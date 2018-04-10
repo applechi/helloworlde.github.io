@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="HelloWood&#39;s Technology Notes">
+  <meta name="keyword" content="HelloWood,technology,note">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Swagger 常用注解说明 | HelloWood
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>HelloWood</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>Swagger 常用注解说明</h2>
+  <p class="post-date">2018-01-07
+  </p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="Swagger-常用注解说明"><a href="#Swagger-常用注解说明" class="headerlink" title="Swagger 常用注解说明"></a>Swagger 常用注解说明</h1><table>
+<thead>
+<tr>
+<th><strong>注解</strong></th>
+<th><strong>属性</strong></th>
+<th><strong>值</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@Api</code></td>
+<td>value</td>
+<td>字符串</td>
+<td>可用在<code>class</code>头上,<code>class</code>描述</td>
+</tr>
+<tr>
+<td></td>
+<td>description</td>
+<td>字符串</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td><code>@Api(value = &quot;xxx&quot;, description = &quot;xxx&quot;)</code></td>
+</tr>
+<tr>
+<td><code>@ApiOperation</code></td>
+<td>value</td>
+<td>字符串</td>
+<td>可用在方法头上.参数的描述容器</td>
+</tr>
+<tr>
+<td></td>
+<td>notes</td>
+<td>字符串</td>
+<td>说明</td>
+</tr>
+<tr>
+<td></td>
+<td>httpMethod</td>
+<td>字符串</td>
+<td>请求方法</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td><code>@ApiOperation(value = &quot;xxx&quot;, notes = &quot;xxx&quot;, method = &quot;GET&quot;)</code></td>
+</tr>
+<tr>
+<td><code>@ApiImplicitParams</code></td>
+<td>{}</td>
+<td><code>@ApiImplicitParam</code>数组</td>
+<td>可用在方法头上.参数的描述容器</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td><code>@ApiImplicitParams({@ApiImplicitParam1,@ApiImplicitParam2,...})</code></td>
+</tr>
+<tr>
+<td><code>@ApiImplicitParam</code></td>
+<td>name</td>
+<td>字符串 与参数命名对应</td>
+<td>可用在<code>@ApiImplicitParams</code>里</td>
+</tr>
+<tr>
+<td></td>
+<td>value</td>
+<td>字符串</td>
+<td>参数中文描述</td>
+</tr>
+<tr>
+<td></td>
+<td>required</td>
+<td>布尔值</td>
+<td>true/false</td>
+</tr>
+<tr>
+<td></td>
+<td>dataType</td>
+<td>字符串</td>
+<td>参数类型</td>
+</tr>
+<tr>
+<td></td>
+<td>paramType</td>
+<td>字符串</td>
+<td>参数请求方式:query/path</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>query:对应<code>@RequestParam</code>传递</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>path: 对应<code>@PathVariable</code>{}path传递</td>
+</tr>
+<tr>
+<td></td>
+<td>dataType</td>
+<td>字符串</td>
+<td>参数类型</td>
+</tr>
+<tr>
+<td></td>
+<td>dataTypeClass</td>
+<td>类</td>
+<td>参数对应的类</td>
+</tr>
+<tr>
+<td></td>
+<td>defaultValue</td>
+<td>字符串</td>
+<td>在api测试中默认值</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td><code>@ApiImplicitParam(name = &quot;newProduct&quot;, value = &quot;商品信息对象&quot;, required = true, dataType = &quot;Product&quot;, dataTypeClass = Product.class)</code></td>
+</tr>
+<tr>
+<td><code>@ApiResponses</code></td>
+<td>{}</td>
+<td><code>@ApiResponse</code>数组</td>
+<td>可用在方法头上.参数的描述容器</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td><code>@ApiResponses({@ApiResponse1,@ApiResponse2,...})</code></td>
+</tr>
+<tr>
+<td><code>@ApiResponse</code></td>
+<td>code</td>
+<td>整形</td>
+<td>可用在<code>@ApiResponses</code>里</td>
+</tr>
+<tr>
+<td></td>
+<td>message</td>
+<td>字符串</td>
+<td>错误描述</td>
+</tr>
+<tr>
+<td></td>
+<td>response</td>
+<td>类</td>
+<td>返回结果对应的类</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td><code>@ApiResponse(code = 200, message = &quot;Successful&quot;, response = CommonResponse.class)</code></td>
+</tr>
+<tr>
+<td><code>@ApiModelProperty</code></td>
+<td>name</td>
+<td>字符串</td>
+<td>实体类参数名称</td>
+</tr>
+<tr>
+<td></td>
+<td>value</td>
+<td>字符串</td>
+<td>实体类参数值</td>
+</tr>
+<tr>
+<td></td>
+<td>notes</td>
+<td>字符串</td>
+<td>说明</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td><code>@ApiModelProperty(name = &quot;name&quot;, value = &quot;name&quot;, notes = &quot;名称&quot;)</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#SpringBoot" >
+    <span class="tag-code">SpringBoot</span>
+  </a>
+
+  <a href="/tags#Java" >
+    <span class="tag-code">Java</span>
+  </a>
+
+  <a href="/tags#Swagger" >
+    <span class="tag-code">Swagger</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Swagger-常用注解说明"><span class="toc-nav-text">Swagger 常用注解说明</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+<script>
+  (function () {
+    var url = 'http://hellowood.github.io/2018/01/07/Swagger-常用注解说明/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "helloworlde";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "Swagger 常用注解说明",
+        owner: "helloworlde",
+        repo: "helloworlde.github.io",
+        oauth: {
+          client_id: "2ddfebc6b5d4be13061d",
+          client_secret: "46e9112f9d6c44127830ade61da6d259d981c932"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    There is path to everyone 
+  </p>
+</footer>
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>

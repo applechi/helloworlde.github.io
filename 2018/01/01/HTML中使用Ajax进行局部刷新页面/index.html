@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="HelloWood&#39;s Technology Notes">
+  <meta name="keyword" content="HelloWood,technology,note">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      HTML中使用Ajax进行局部刷新页面 | HelloWood
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>HelloWood</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>HTML中使用Ajax进行局部刷新页面</h2>
+  <p class="post-date">2018-01-01
+  </p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p>#HTML中使用Ajax进行局部刷新页面，使用JS将数据发送到后台</p>
+<hr>
+<p>##1.在HTML页面中使用js脚本将请求数据发送给后台servlet</p>
+<ul>
+<li>由按钮触发事件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button id=&quot;select&quot; onclick=&quot;queryInfos()&quot;&gt;查询&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>由js脚本对将数据发送到后台</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var req = new XMLHttpRequest();</span><br><span class="line">function queryInfos() &#123;</span><br><span class="line">    //设置传送方式，对应的servlet或action路径，是否异步处理</span><br><span class="line">    req.open(&quot;POST&quot;, &quot;/info/queryinfos&quot;, true);</span><br><span class="line">    //如果设置数据传送方式为post，则必须设置请求头信息</span><br><span class="line">    req.setRequestHeader(&quot;Content-type&quot;, &quot;application/x-www-form-urlencoded&quot;);</span><br><span class="line">    //设置回调函数，当前操作完成后进行的操作</span><br><span class="line">    req.onreadystatechange = callback;</span><br><span class="line"></span><br><span class="line">    //Ajax请求发送的数据不是表单，需要拼接数据，格式和get方式一样</span><br><span class="line">    var reqData = &quot;ip=&quot; + document.getElementById(&quot;ip&quot;).value;</span><br><span class="line">    reqData += &quot;&amp;addr=&quot; + document.getElementById(&quot;addr&quot;).value;</span><br><span class="line">    reqData += &quot;&amp;time=&quot; + document.getElementById(&quot;time&quot;).value;</span><br><span class="line">    reqData += &quot;&amp;times=&quot; + document.getElementById(&quot;times&quot;).value;</span><br><span class="line"></span><br><span class="line">    //发送请求</span><br><span class="line">    req.send(reqData);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>##2.后台获取数据进行处理，将结果返回给前台</p>
+<ul>
+<li>后台进行处理<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException &#123;</span><br><span class="line">       //设置数据编码方式</span><br><span class="line">       request.setCharacterEncoding(&quot;utf-8&quot;);</span><br><span class="line">       response.setCharacterEncoding(&quot;utf-8&quot;);</span><br><span class="line">       //设置数据类型</span><br><span class="line">       response.setContentType(&quot;text/plain&quot;);</span><br><span class="line">       //设置禁用缓存</span><br><span class="line">       response.setHeader(&quot;Cache-control&quot;,&quot;no-cache&quot;);</span><br><span class="line"></span><br><span class="line">       //获取从页面传递的参数</span><br><span class="line">       String ip = request.getParameter(&quot;ip&quot;);</span><br><span class="line">       String addr = request.getParameter(&quot;addr&quot;);</span><br><span class="line">       String time = request.getParameter(&quot;time&quot;);</span><br><span class="line">       String times = request.getParameter(&quot;times&quot;);</span><br><span class="line"></span><br><span class="line">       /*</span><br><span class="line">       * 执行操作</span><br><span class="line">       * */</span><br><span class="line"></span><br><span class="line">       //拼接返回的json数据</span><br><span class="line">       StringBuilder jsonString = new StringBuilder();</span><br><span class="line">       jsonString.append(&quot;&#123;&quot;);</span><br><span class="line">       jsonString.append(&quot;&apos;size&apos;:2&quot;);</span><br><span class="line"></span><br><span class="line">       jsonString.append(&quot;,&apos;datas&apos;:[&quot;);</span><br><span class="line"></span><br><span class="line">       jsonString.append(&quot;&#123;&quot;);</span><br><span class="line">       jsonString.append(&quot;&apos;ip&apos;:&apos;10.10.1.1&apos;,&quot;);</span><br><span class="line">       jsonString.append(&quot;&apos;addr&apos;:&apos;辽宁葫芦岛&apos;,&quot;);</span><br><span class="line">       jsonString.append(&quot;&apos;time&apos;:&apos;2016-10-24 16:00:23&apos;,&quot;);</span><br><span class="line">       jsonString.append(&quot;&apos;times&apos;:&apos;10&apos;&quot;);</span><br><span class="line">       jsonString.append(&quot;&#125;&quot;);</span><br><span class="line"></span><br><span class="line">       jsonString.append(&quot;,&#123;&quot;);</span><br><span class="line">       jsonString.append(&quot;&apos;ip&apos;:&apos;192.168.110.111&apos;,&quot;);</span><br><span class="line">       jsonString.append(&quot;&apos;addr&apos;:&apos;辽宁沈阳&apos;,&quot;);</span><br><span class="line">       jsonString.append(&quot;&apos;time&apos;:&apos;2016-11-11 11:00:23&apos;,&quot;);</span><br><span class="line">       jsonString.append(&quot;&apos;times&apos;:&apos;14&apos;&quot;);</span><br><span class="line">       jsonString.append(&quot;&#125;&quot;);</span><br><span class="line"></span><br><span class="line">       jsonString.append(&quot;]&quot;);</span><br><span class="line"></span><br><span class="line">       jsonString.append(&quot;&#125;&quot;);</span><br><span class="line"></span><br><span class="line">       //获取输出流</span><br><span class="line">       PrintWriter out = response.getWriter();</span><br><span class="line">       //将数据返回页面</span><br><span class="line">       out.write(jsonString.toString());</span><br><span class="line">       out.flush();</span><br><span class="line">       out.close();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>##3.返回处理结果，局部刷新页面</p>
+<ul>
+<li>对返回操作进行处理<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">//回调函数</span><br><span class="line">function callback() &#123;</span><br><span class="line">    //如果Ajax和request的状态都正确则进行操作</span><br><span class="line">    if (req.readyState == 4 &amp;&amp; req.status == 200) &#123;</span><br><span class="line">        //获取后台返回的数据</span><br><span class="line">        var response = req.responseText;</span><br><span class="line">        //进行对象化处理</span><br><span class="line">        //加上圆括号的目的是迫使eval函数在处理JavaScript代码的时候强制将括号内的表达式转化为对象，而不是作为语句来执行</span><br><span class="line">        //由于json是以&quot;&#123;&#125;&quot;的方式来开始以及结束的，在JS中，它会被当成一个语句块来处理，所以必须强制性的将它转换成一种表达式。</span><br><span class="line">        var jsonobject = eval(&quot;(&quot; + response + &quot;)&quot;);</span><br><span class="line">        //获取数据的长度</span><br><span class="line">        var datasize = jsonobject.size;</span><br><span class="line">        //获取json中的数据数据</span><br><span class="line">        var datas = jsonobject.datas;</span><br><span class="line"></span><br><span class="line">        //删除原有的table数据</span><br><span class="line">        var table = document.getElementById(&quot;table&quot;);</span><br><span class="line">        var infos = document.getElementById(&quot;tbody&quot;);</span><br><span class="line">        table.removeChild(infos);</span><br><span class="line">        //此处必须创建tbody，否则无法加入到table中</span><br><span class="line">        infos = document.createElement(&quot;tbody&quot;);</span><br><span class="line"></span><br><span class="line">        //生成新的table数据元素并添加到table中</span><br><span class="line">        for (var i = 0; i &lt; datas.length; i++) &#123;</span><br><span class="line">            var tr = document.createElement(&quot;tr&quot;);</span><br><span class="line">            var td1 = document.createElement(&quot;td&quot;);</span><br><span class="line">            var td2 = document.createElement(&quot;td&quot;);</span><br><span class="line">            var td3 = document.createElement(&quot;td&quot;);</span><br><span class="line">            var td4 = document.createElement(&quot;td&quot;);</span><br><span class="line"></span><br><span class="line">            td1.innerHTML = datas[i].ip;</span><br><span class="line">            td2.innerHTML = datas[i].addr;</span><br><span class="line">            td3.innerHTML = datas[i].time;</span><br><span class="line">            td4.innerHTML = datas[i].times;</span><br><span class="line"></span><br><span class="line">            tr.appendChild(td1);</span><br><span class="line">            tr.appendChild(td2);</span><br><span class="line">            tr.appendChild(td3);</span><br><span class="line">            tr.appendChild(td4);</span><br><span class="line">            infos.appendChild(tr);</span><br><span class="line">        &#125;</span><br><span class="line">        table.appendChild(infos);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<ul>
+<li>HTML文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=&quot;title&quot;&gt;</span><br><span class="line">    &lt;h1&gt;Ajax异步查询，局部刷新页面&lt;/h1&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;table class=&quot;select&quot;&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;td class=&quot;td&quot;&gt;IP:&lt;input type=&quot;text&quot; id=&quot;ip&quot; name=&quot;ip&quot; class=&quot;input&quot;&gt;&lt;/td&gt;</span><br><span class="line">            &lt;td class=&quot;td&quot;&gt;地址:&lt;input type=&quot;text&quot; id=&quot;addr&quot; name=&quot;addr&quot; class=&quot;input&quot;&gt;&lt;/td&gt;</span><br><span class="line">            &lt;td class=&quot;td&quot;&gt;时间:&lt;input type=&quot;text&quot; id=&quot;time&quot; name=&quot;time&quot; class=&quot;input&quot;&gt;&lt;/td&gt;</span><br><span class="line">            &lt;td class=&quot;td&quot;&gt;次数:&lt;input type=&quot;text&quot; id=&quot;times&quot; name=&quot;times&quot; class=&quot;input&quot;&gt;&lt;/td&gt;</span><br><span class="line">            &lt;td class=&quot;td&quot;&gt; &lt;button id=&quot;select&quot; onclick=&quot;queryInfos()&quot;&gt;查询&lt;/button&gt;&lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">    &lt;/table&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;table id=&quot;table&quot; class=&quot;table&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;1&quot;&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">        &lt;td class=&quot;td&quot;&gt;登录ip&lt;/td&gt;</span><br><span class="line">        &lt;td class=&quot;td&quot;&gt;登录地址&lt;/td&gt;</span><br><span class="line">        &lt;td class=&quot;td&quot;&gt;最后一次登录时间&lt;/td&gt;</span><br><span class="line">        &lt;td class=&quot;td&quot;&gt;登录次数&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">        &lt;td class=&quot;black&quot; colspan=&quot;4&quot;&gt;&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">    &lt;tbody id=&quot;tbody&quot;&gt;</span><br><span class="line">    &lt;tr id=&quot;infos&quot;&gt;</span><br><span class="line">        &lt;td&gt;127.0.0.1&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;辽宁大连&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;2016-10-24 14:47:01&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;123&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">    &lt;/tbody&gt;</span><br><span class="line"></span><br><span class="line">&lt;/table&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>##<a href="http://project.hellowood.com.cn:8080/Ajax" target="_blank" rel="noopener">效果演示</a></p>
+<p>##<a href="http://download.csdn.net/detail/u013360850/9662587" target="_blank" rel="noopener">源码下载</a></p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#HTML" >
+    <span class="tag-code">HTML</span>
+  </a>
+
+  <a href="/tags#Jquery" >
+    <span class="tag-code">Jquery</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="nav">none</ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+<script>
+  (function () {
+    var url = 'http://hellowood.github.io/2018/01/01/HTML中使用Ajax进行局部刷新页面/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "helloworlde";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "HTML中使用Ajax进行局部刷新页面",
+        owner: "helloworlde",
+        repo: "helloworlde.github.io",
+        oauth: {
+          client_id: "2ddfebc6b5d4be13061d",
+          client_secret: "46e9112f9d6c44127830ade61da6d259d981c932"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    There is path to everyone 
+  </p>
+</footer>
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>

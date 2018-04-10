@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="HelloWood&#39;s Technology Notes">
+  <meta name="keyword" content="HelloWood,technology,note">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      AngularJS 中ngTable自定义/重写过滤器 | HelloWood
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>HelloWood</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>AngularJS 中ngTable自定义/重写过滤器</h2>
+  <p class="post-date">2018-01-01
+  </p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><blockquote>
+<ul>
+<li><p>在使用ngTable 时用到了需要进行按时间过滤，但是ngTable并没有该功能，所以需要自定义过滤器，但是如果自定义了过滤器，则会覆盖原来的，所以就需要重写过滤器</p>
+</li>
+<li><p>###ngTable过滤器的原理是按照过滤的条件遍历所有的列表项内容，如果满足过滤条件则返回true，显示该记录，如果不满足条件则返回false，不显示该条记录，过滤条件有任何变化都会触发过滤</p>
+</li>
+<li><p>text:根据字符匹配，如果被过滤的值有该字符，则显示该记录</p>
+</li>
+<li>number:根据数值进行匹配，如果数值相等，则显示该记录</li>
+<li>select:根据下拉列表选择的值进行匹配，如果值相等，则显示该记录</li>
+</ul>
+</blockquote>
+<ul>
+<li><p>添加自定义的过滤器控件</p>
+<ul>
+<li>在HTML中<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/ng-template&quot; id=&quot;/filter/js/startDateFilter.html&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot;&gt;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>添加自定义的过滤器控件 </p>
+<ul>
+<li>在js中</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$scope.customFilter = &#123;</span><br><span class="line">            start:&#123;</span><br><span class="line">                id:&apos;/filter/js/startDateFilter.html&apos;,</span><br><span class="line">                placeholder:&apos;Start&apos;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>需要在ngTable的配置中指定过滤器</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$scope.userTable = new NgTableParams(&#123;&#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                // initial sort order</span><br><span class="line">                filterDelay: 0,</span><br><span class="line">                filterOptions: &#123;filterFn: $scope.customFilterFn&#125;,</span><br><span class="line">                dataset: data</span><br><span class="line">            &#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>为指定列设置控件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;td data-title=&quot;&apos;日期&apos;&quot; filter=&quot;customFilter&quot;&gt;</span><br><span class="line">                    &#123;&#123;user.date|date:&apos;yyyy-MM-dd&apos;&#125;&#125;</span><br><span class="line">                &lt;/td&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>重写过滤器方法，实现过滤器功能</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$scope.customFilterFn = function (date, filterValues) &#123;</span><br><span class="line">            return data.filter(function (item) &#123;</span><br><span class="line">                var result = true;</span><br><span class="line">                if (typeof(filterValues.name) != undefined &amp;&amp; filterValues.name != null) &#123;</span><br><span class="line">                    result = result &amp;&amp; (item.name.indenOf(filterValues.name) &gt; -1);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                if (typeof(filterValues.sex) != undefined &amp;&amp; filterValues.sex != null) &#123;</span><br><span class="line">                    result = result &amp;&amp; (item.sex == filterValues.sex);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                if (typeof(filterValues.startDate) != undefined &amp;&amp; filterValues.startDate != null) &#123;</span><br><span class="line">                    result = result &amp;&amp; (item.startDate &gt;= filterValues.startDate);</span><br><span class="line">                &#125;</span><br><span class="line">                return result;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>页面代码</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot; ng-app=&quot;myApp&quot; ng-controller=&quot;myCtrl&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;自定义过滤器&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;link href=&quot;https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;</span><br><span class="line">&lt;link href=&quot;https://cdn.bootcss.com/ng-table/1.0.0/ng-table.min.css&quot; rel=&quot;stylesheet&quot;&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=&quot;row&quot;&gt;</span><br><span class="line">    &lt;!--自定义filter控件--&gt;</span><br><span class="line">    &lt;script type=&quot;text/ng-template&quot; id=&quot;dateFilter.html&quot;&gt;</span><br><span class="line">        &lt;input type=&quot;date&quot;&gt;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">    &lt;div class=&quot;col-md-12 table-responsive&quot;&gt;</span><br><span class="line">        &lt;table ng-table=&quot;userTable&quot; class=&quot;table table-condensed table-bordered table-striped table-hover &quot;</span><br><span class="line">               show-filter=&quot;true&quot;&gt;</span><br><span class="line">            &lt;tr ng-repeat=&quot;user in $data&quot;&gt;</span><br><span class="line">                &lt;td data-title=&quot;&apos;用户名&apos;&quot; filter=&quot;&#123;username: &apos;text&apos;&#125;&quot; sortable=&quot;&apos;username&apos;&quot;&gt;&#123;&#123;user.username&#125;&#125;&lt;/td&gt;</span><br><span class="line">                &lt;td data-title=&quot;&apos;性别&apos;&quot; filter=&quot;&#123;sex: &apos;select&apos;&#125;&quot; filter-data=&quot;sexs&quot; sortable=&quot;&apos;sex&apos;&quot;&gt;&#123;&#123;user.sex&#125;&#125;&lt;/td&gt;</span><br><span class="line">                &lt;td data-title=&quot;&apos;性别&apos;&quot; filter=&quot;customFilter&quot; sortable=&quot;&apos;date&apos;&quot;&gt;</span><br><span class="line">                    &#123;&#123;user.date|date:&apos;yyyy-MM-dd&apos;&#125;&#125;</span><br><span class="line">                &lt;/td&gt;</span><br><span class="line">            &lt;/tr&gt;</span><br><span class="line">        &lt;/table&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script type=&quot;text/ng-template&quot; id=&quot;/filter/js/startDateFilter.html&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot;&gt;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;https://cdn.bootcss.com/angular.js/1.5.8/angular.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;https://cdn.bootcss.com/ng-table/1.0.0/ng-table.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    var app = angular.module(&apos;myApp&apos;, [&apos;ngTable&apos;]);</span><br><span class="line">    app.controller(&apos;myCtrl&apos;, function ($scope, NgTableParams) &#123;</span><br><span class="line"></span><br><span class="line">        $scope.sexs = [&#123;</span><br><span class="line">            &quot;id&quot;: &quot;男&quot;,</span><br><span class="line">            &quot;title&quot;: &quot;男&quot;</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">            &quot;id&quot;: &quot;女&quot;,</span><br><span class="line">            &quot;title&quot;: &quot;女&quot;</span><br><span class="line">        &#125;]</span><br><span class="line"></span><br><span class="line">        var data = [&#123;</span><br><span class="line">            &quot;username&quot;: &quot;农夫山泉&quot;,</span><br><span class="line">            &quot;sex&quot;: &quot;男&quot;,</span><br><span class="line">            &quot;date&quot;: 1004570428580</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">            &quot;username&quot;: &quot;哇哈哈&quot;,</span><br><span class="line">            &quot;sex&quot;: &quot;女&quot;,</span><br><span class="line">            &quot;date&quot;: 1784570428580</span><br><span class="line">        &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">            &quot;username&quot;: &quot;Alice&quot;,</span><br><span class="line">            &quot;sex&quot;: &quot;男&quot;,</span><br><span class="line">            &quot;date&quot;: 1466570428580</span><br><span class="line">        &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">            &quot;username&quot;: &quot;CCC&quot;,</span><br><span class="line">            &quot;sex&quot;: &quot;女&quot;,</span><br><span class="line">            &quot;date&quot;: 1584570428580</span><br><span class="line">        &#125;];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        $scope.userTable = new NgTableParams(&#123;</span><br><span class="line">                sorting: &#123;id: &quot;asc&quot;&#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                // initial sort order</span><br><span class="line">                filterDelay: 0,</span><br><span class="line">                filterOptions: &#123;filterFn: $scope.customFilterFn&#125;,</span><br><span class="line">                dataset: data</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">        $scope.customFilter = &#123;</span><br><span class="line">            start:&#123;</span><br><span class="line">                id:&apos;/filter/js/startDateFilter.html&apos;,</span><br><span class="line">                placeholder:&apos;Start&apos;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        $scope.customFilterFn = function (date, filterValues) &#123;</span><br><span class="line">            return data.filter(function (item) &#123;</span><br><span class="line">                var result = true;</span><br><span class="line"></span><br><span class="line">                console.log(filterValues);</span><br><span class="line"></span><br><span class="line">                if (typeof(filterValues.name) != undefined &amp;&amp; filterValues.name != null) &#123;</span><br><span class="line">                    result = result &amp;&amp; (item.name.indenOf(filterValues.name) &gt; -1);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                if (typeof(filterValues.sex) != undefined &amp;&amp; filterValues.sex != null) &#123;</span><br><span class="line">                    result = result &amp;&amp; (item.sex == filterValues.sex);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                if (typeof(filterValues.startDate) != undefined &amp;&amp; filterValues.startDate != null) &#123;</span><br><span class="line">                    result = result &amp;&amp; (item.startDate &gt;= filterValues.startDate);</span><br><span class="line">                &#125;</span><br><span class="line">                return result;</span><br><span class="line">            &#125;)</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#AngularJs" >
+    <span class="tag-code">AngularJs</span>
+  </a>
+
+  <a href="/tags#ngTable" >
+    <span class="tag-code">ngTable</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="nav">none</ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+<script>
+  (function () {
+    var url = 'http://hellowood.github.io/2018/01/01/AngularJS中ngTable自定义-重写过滤器/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "helloworlde";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "AngularJS 中ngTable自定义/重写过滤器",
+        owner: "helloworlde",
+        repo: "helloworlde.github.io",
+        oauth: {
+          client_id: "2ddfebc6b5d4be13061d",
+          client_secret: "46e9112f9d6c44127830ade61da6d259d981c932"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    There is path to everyone 
+  </p>
+</footer>
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>
