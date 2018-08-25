@@ -10,7 +10,7 @@
   
   <title>
     
-      Docker 容器中运行 Docker 命令 | HelloWood
+      Java 中计算字符串表达式的值 | HelloWood
     
   </title>
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -112,8 +112,8 @@
 </header>
 
     <div id="article-banner">
-  <h2>Docker 容器中运行 Docker 命令</h2>
-  <p class="post-date">2018-08-08
+  <h2>Java 中计算字符串表达式的值</h2>
+  <p class="post-date">2018-08-25
   </p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
@@ -122,32 +122,19 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h1 id="Docker-容器中运行-Docker-命令"><a href="#Docker-容器中运行-Docker-命令" class="headerlink" title="Docker 容器中运行 Docker 命令"></a>Docker 容器中运行 Docker 命令</h1><blockquote>
-<p>在使用 GitLab/Jenkins 等 CI 软件的时候需要使用 Docker 命令来构建镜像，需要在容器中使用 Docker 命令；通过将宿主机的 Docker 共享给容器即可</p>
+    <section class="markdown-content"><h1 id="Java-中计算字符串表达式的值"><a href="#Java-中计算字符串表达式的值" class="headerlink" title="Java 中计算字符串表达式的值"></a>Java 中计算字符串表达式的值</h1><blockquote>
+<p>在 Java 中计算字符串数值表达式可以用 <code>javax.script.ScriptEngine#eval(java.lang.String)</code>，通过调用 JavaScript 来计算</p>
 </blockquote>
-<ul>
-<li>在启动容器时添加以下命令：</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">--privileged \</span><br><span class="line">-v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">-v $(<span class="built_in">which</span> docker)r:/bin/docker \</span><br></pre></td></tr></table></figure>
-<blockquote>
-<ul>
-<li><code>--privileged</code> 表示该容器真正启用 root 权限</li>
-<li><code>-v /var/run/docker.sock:/var/run/docker.sock</code>和<code>-v $(which docker)r:/bin/docker</code>命令将相关的 Docker 文件挂载到容器</li>
-</ul>
-</blockquote>
-<hr>
-<ul>
-<li>Demo: 启动 GitLab</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">docker run --name gitlab-ee \</span><br><span class="line">    -d -p 443:443 -p 80:80 -p 22:22 \</span><br><span class="line">    --privileged \</span><br><span class="line">    --restart always \</span><br><span class="line">    --hostname 10.0.0.24 \</span><br><span class="line">    -v /Users/hellowood/gitlab/logs:/var/<span class="built_in">log</span>/gitlab \</span><br><span class="line">    -v /Users/hellowood/gitlab/data:/var/opt/gitlab \</span><br><span class="line">    -v /Users/hellowood/.m2:/root/.m2 \</span><br><span class="line">    -v /Users/hellowood/.gradle:/root/.gradle \</span><br><span class="line">    -v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">    -v $(<span class="built_in">which</span> docker):/bin/docker \</span><br><span class="line">    gitlab/gitlab-ee:latest</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> javax.script.ScriptEngine;</span><br><span class="line"><span class="keyword">import</span> javax.script.ScriptEngineManager;</span><br><span class="line"><span class="keyword">import</span> javax.script.ScriptException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExpressionCalculate</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ScriptEngineManager scriptEngineManager = <span class="keyword">new</span> ScriptEngineManager();</span><br><span class="line">        ScriptEngine scriptEngine = scriptEngineManager.getEngineByName(<span class="string">"nashorn"</span>);</span><br><span class="line">        String expression = <span class="string">"10 * 2 + 6 / (3 - 1)"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            String result = String.valueOf(scriptEngine.eval(expression));</span><br><span class="line">            System.out.println(result);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ScriptException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果： 23</p>
 </section>
     <!-- Tags START -->
     
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#Docker" >
-    <span class="tag-code">Docker</span>
+  <a href="/tags#Java" >
+    <span class="tag-code">Java</span>
   </a>
 
       </div>
@@ -172,7 +159,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Docker-容器中运行-Docker-命令"><span class="toc-nav-text">Docker 容器中运行 Docker 命令</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Java-中计算字符串表达式的值"><span class="toc-nav-text">Java 中计算字符串表达式的值</span></a></li></ol>
     
   </div>
 </aside>
@@ -181,7 +168,7 @@
 </main>
 <script>
   (function () {
-    var url = 'http://hellowood.github.io/2018/08/08/Docker-容器中运行-Docker-命令/';
+    var url = 'http://hellowood.github.io/2018/08/25/Java-中计算字符串表达式的值/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -237,7 +224,7 @@
     var gitmentConfig = "helloworlde";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "Docker 容器中运行 Docker 命令",
+        id: "Java 中计算字符串表达式的值",
         owner: "helloworlde",
         repo: "helloworlde.github.io",
         oauth: {
