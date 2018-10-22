@@ -115,6 +115,75 @@
   
     <article class="article-card">
       <h2 class="article-head">
+        <a href="/2018/01/01/在IDEA中配置Gauge环境/">在IDEA中配置Gauge环境</a>
+      </h2>
+      <p class="article-date">January 1, 2018</p>
+      
+        
+  <a href="/tags#Java" >
+    <span class="tag-code">Java</span>
+  </a>
+
+  <a href="/tags#Gauge" >
+    <span class="tag-code">Gauge</span>
+  </a>
+
+  <a href="/tags#Test" >
+    <span class="tag-code">Test</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+Gauge是一个自动化测试工具，主要是通过.spec 文件指定执行的步骤，然后由Java代码去测试
+
+首先，下载安装Gauge
+安装后通过cmd运行guage -v 来确认Gauge安装成功
+安装成功后安装Gauge的插件
+
+gauge --install-all
+或者可以用 gauge  ...
+        
+      </div>
+      <a class="more" href="/2018/01/01/在IDEA中配置Gauge环境/"></a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2018/01/01/Gauge中Gradle自定义Task失败的解决方法/">Gauge中Gradle自定义Task失败的解决方法</a>
+      </h2>
+      <p class="article-date">January 1, 2018</p>
+      
+        
+  <a href="/tags#Java" >
+    <span class="tag-code">Java</span>
+  </a>
+
+  <a href="/tags#Gauge" >
+    <span class="tag-code">Gauge</span>
+  </a>
+
+  <a href="/tags#Test" >
+    <span class="tag-code">Test</span>
+  </a>
+
+  <a href="/tags#Gradle" >
+    <span class="tag-code">Gradle</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          ##Gauge中加入了Gradle之后根据官方文档自定义task并不能执行
+1234567891011task gaugeTest(type: GaugeTask) &#123;    doFirst &#123;        gauge &#123;            specsDi ...
+        
+      </div>
+      <a class="more" href="/2018/01/01/Gauge中Gradle自定义Task失败的解决方法/"></a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
         <a href="/2018/01/01/IDEA-Maven项目导入失败，无法识别pom文件/">IDEA Maven项目导入失败，无法识别pom文件</a>
       </h2>
       <p class="article-date">January 1, 2018</p>
@@ -354,63 +423,6 @@ Tomcat在启动时一直停留在某一个应用无法启动或者需要很长�
         
       </div>
       <a class="more" href="/2018/01/01/Ubuntu搭建Shadowsocks服务器/"></a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2018/01/01/SpringMVC应用启动时执行操作/">SpringMVC应用启动时执行操作</a>
-      </h2>
-      <p class="article-date">January 1, 2018</p>
-      
-        
-  <a href="/tags#Java" >
-    <span class="tag-code">Java</span>
-  </a>
-
-  <a href="/tags#SpringMVC" >
-    <span class="tag-code">SpringMVC</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-ContextRefreshedEvent：当ApplicationContext初始化或者刷新时触发该事件。 
-
-ContextClosedEvent：当ApplicationContext被关闭时触发该事件。容器被关闭时，其管理的所有单例Bean都被销毁。 
-
-RequestHandl ...
-        
-      </div>
-      <a class="more" href="/2018/01/01/SpringMVC应用启动时执行操作/"></a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2018/01/01/Spring-Boot-启动时执行加载资源-执行操作/">Spring Boot 启动时执行加载资源/执行操作</a>
-      </h2>
-      <p class="article-date">January 1, 2018</p>
-      
-        
-  <a href="/tags#SpringBoot" >
-    <span class="tag-code">SpringBoot</span>
-  </a>
-
-  <a href="/tags#Java" >
-    <span class="tag-code">Java</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-SpringBoot 在启动的时候加载资源或者执行操作，进行初始化来执行特定操作，SpringBoot已经提供了这样的接口，通过实现该接口就可以实现需要的操作
-
-
-实现CommandLineRunner接口123456789@Order(value=2)@Componentpublic c ...
-        
-      </div>
-      <a class="more" href="/2018/01/01/Spring-Boot-启动时执行加载资源-执行操作/"></a>
     </article>
   
 
