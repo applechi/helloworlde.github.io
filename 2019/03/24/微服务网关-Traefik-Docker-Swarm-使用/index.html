@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="HelloWood&#39;s Technology Notes">
+  <meta name="keyword" content="HelloWood,technology,note">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      微服务网关 Traefik - Docker Swarm 使用 | HelloWood
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>HelloWood</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>微服务网关 Traefik - Docker Swarm 使用</h2>
+  <p class="post-date">2019-03-24
+  </p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="微服务网关-Traefik-Docker-Swarm-使用"><a href="#微服务网关-Traefik-Docker-Swarm-使用" class="headerlink" title="微服务网关 Traefik - Docker Swarm 使用"></a>微服务网关 Traefik - Docker Swarm 使用</h1><p><a href="https://docs.traefik.io/" target="_blank" rel="noopener">traefik</a> 是一个用 Go 开发的适用于微服务的反向代理和负载均衡的网关；可以自动发现并代理服务，可以用 Kubernetes 或 Docker Swarm 等方式，支持使用 Eureka，Consul，Etcd，ZooKeeper 等注册中心</p>
+<h2 id="Docker-Swarm-使用"><a href="#Docker-Swarm-使用" class="headerlink" title="Docker Swarm 使用"></a>Docker Swarm 使用</h2><h3 id="启动官方-Demo"><a href="#启动官方-Demo" class="headerlink" title="启动官方 Demo"></a>启动官方 Demo</h3><ul>
+<li>docker-compose.yml</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  reverse-proxy:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">traefik</span> <span class="comment"># The official Traefik docker image</span></span><br><span class="line"><span class="attr">    command:</span> <span class="bullet">--api</span> <span class="bullet">--docker</span> <span class="comment"># Enables the web UI and tells Traefik to listen to docker</span></span><br><span class="line"><span class="attr">    ports:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"80:80"</span>     <span class="comment"># The HTTP port</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"8080:8080"</span> <span class="comment"># The Web UI (enabled by --api)</span></span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">/var/run/docker.sock:/var/run/docker.sock</span> <span class="comment"># So that Traefik can listen to the Docker events</span></span><br><span class="line"><span class="attr">  whoami:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">containous/whoami</span> <span class="comment"># A container that exposes an API to show its IP address</span></span><br><span class="line"><span class="attr">    labels:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"traefik.frontend.rule=Host:whoami.docker.localhost"</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>启动<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这样会启动一个 treafik 的 WebUI 和一个后端服务器</p>
+<p><img src="https://hellowood.oss-cn-beijing.aliyuncs.com/blog/treafik-01.png" alt="01"></p>
+<p><img src="https://hellowood.oss-cn-beijing.aliyuncs.com/blog/treafik-02.png" alt="02"></p>
+<p>浏览器访问 <a href="http://whoami.docker.localhost" target="_blank" rel="noopener">http://whoami.docker.localhost</a>，会返回以下内容 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Hostname: 460d64ac7842</span><br><span class="line">IP: 127.0.0.1</span><br><span class="line">IP: 172.22.0.3</span><br><span class="line">GET / HTTP/1.1</span><br><span class="line">Host: whoami.docker.localhost</span><br><span class="line">User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8</span><br><span class="line">Accept-Encoding: gzip, deflate, br</span><br><span class="line">Accept-Language: zh,zh-CN;q=0.9,en;q=0.8,en-US;q=0.7</span><br><span class="line">Cache-Control: max-age=0</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">X-Forwarded-For: 172.22.0.1</span><br><span class="line">X-Forwarded-Host: whoami.docker.localhost</span><br><span class="line">X-Forwarded-Port: 80</span><br><span class="line">X-Forwarded-Proto: http</span><br><span class="line">X-Forwarded-Server: 2d620da469b5</span><br><span class="line">X-Real-Ip: 172.22.0.1</span><br></pre></td></tr></table></figure>
+<h4 id="修改访问规则，使用后缀访问"><a href="#修改访问规则，使用后缀访问" class="headerlink" title="修改访问规则，使用后缀访问"></a>修改访问规则，使用后缀访问</h4><p>修改 docker-compose.yml中whoami的访问规则</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">version: &apos;3&apos;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  reverse-proxy:</span><br><span class="line">    image: traefik # The official Traefik docker image</span><br><span class="line">    command: --api --docker # Enables the web UI and tells Traefik to listen to docker</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;80:80&quot;     # The HTTP port</span><br><span class="line">      - &quot;8080:8080&quot; # The Web UI (enabled by --api)</span><br><span class="line">    volumes:</span><br><span class="line">      - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events</span><br><span class="line">  whoami:</span><br><span class="line">    image: containous/whoami # A container that exposes an API to show its IP address</span><br><span class="line">    labels:</span><br><span class="line">      - &quot;traefik.frontend.rule=PathPrefixStrip:/whoami&quot;</span><br></pre></td></tr></table></figure>
+<p>再次启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+<p>通过浏览器访问 <a href="http://localhost/whoami" target="_blank" rel="noopener">http://localhost/whoami</a> 会输出以下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Hostname: 9fc59eb66eca</span><br><span class="line">IP: 127.0.0.1</span><br><span class="line">IP: 172.22.0.3</span><br><span class="line">GET / HTTP/1.1</span><br><span class="line">Host: localhost</span><br><span class="line">User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8</span><br><span class="line">Accept-Encoding: gzip, deflate, br</span><br><span class="line">Accept-Language: zh,zh-CN;q=0.9,en;q=0.8,en-US;q=0.7</span><br><span class="line">Cookie: XSRF-TOKEN=54b4c46c-68cb-4f05-a8f7-9a2c43aa74e3; JSESSIONID=4A5969048B72F3A0F0122CA901C60445</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">X-Forwarded-For: 172.22.0.1</span><br><span class="line">X-Forwarded-Host: localhost</span><br><span class="line">X-Forwarded-Port: 80</span><br><span class="line">X-Forwarded-Prefix: /whoami</span><br><span class="line">X-Forwarded-Proto: http</span><br><span class="line">X-Forwarded-Server: 2d620da469b5</span><br><span class="line">X-Real-Ip: 172.22.0.1</span><br></pre></td></tr></table></figure></p>
+<h4 id="指定域名访问"><a href="#指定域名访问" class="headerlink" title="指定域名访问"></a>指定域名访问</h4><ul>
+<li>修改 docker-compose.yml </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">version: &apos;3&apos;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  reverse-proxy:</span><br><span class="line">    image: traefik # The official Traefik docker image</span><br><span class="line">    command: --api --docker # Enables the web UI and tells Traefik to listen to docker</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;80:80&quot;     # The HTTP port</span><br><span class="line">      - &quot;8080:8080&quot; # The Web UI (enabled by --api)</span><br><span class="line">    volumes:</span><br><span class="line">      - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events</span><br><span class="line">  whoami:</span><br><span class="line">    image: containous/whoami # A container that exposes an API to show its IP address</span><br><span class="line">    labels:</span><br><span class="line">      - &quot;traefik.frontend.rule=Host:whoami.localhost&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>同时使用域名和后缀</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">version: &apos;3&apos;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  reverse-proxy:</span><br><span class="line">    image: traefik # The official Traefik docker image</span><br><span class="line">    command: --api --docker # Enables the web UI and tells Traefik to listen to docker</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;80:80&quot;     # The HTTP port</span><br><span class="line">      - &quot;8080:8080&quot; # The Web UI (enabled by --api)</span><br><span class="line">    volumes:</span><br><span class="line">      - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events</span><br><span class="line">  whoami:</span><br><span class="line">    image: containous/whoami # A container that exposes an API to show its IP address</span><br><span class="line">    labels:</span><br><span class="line">      - &quot;traefik.frontend.rule=Host:whoami.docker.localhost&quot;</span><br><span class="line">      - &quot;traefik.frontend.rule=PathPrefixStrip:/whoami&quot;</span><br></pre></td></tr></table></figure>
+<p>也可以指定 Header，Host 和 Path 的正则或者其他各种访问规则，具体可以参考官方文档<a href="https://docs.traefik.io/basics/#matchers" target="_blank" rel="noopener">Matchers</a></p>
+<h3 id="部署单个应用"><a href="#部署单个应用" class="headerlink" title="部署单个应用"></a>部署单个应用</h3><ul>
+<li>部署一个使用 MongoDB 作为存储的单体应用</li>
+</ul>
+<p>docker-compose.yml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  reverse-proxy:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">traefik</span> <span class="comment"># The official Traefik docker image</span></span><br><span class="line"><span class="attr">    command:</span> <span class="bullet">--api</span> <span class="bullet">--docker</span> <span class="comment"># Enables the web UI and tells Traefik to listen to docker</span></span><br><span class="line"><span class="attr">    ports:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"80:80"</span>     <span class="comment"># The HTTP port</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"8080:8080"</span> <span class="comment"># The Web UI (enabled by --api)</span></span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">/var/run/docker.sock:/var/run/docker.sock</span> <span class="comment"># So that Traefik can listen to the Docker events</span></span><br><span class="line"><span class="attr">  mongo:</span> </span><br><span class="line"><span class="attr">    image:</span> <span class="string">mongo</span></span><br><span class="line"><span class="attr">    ports:</span> </span><br><span class="line"><span class="bullet">      -</span> <span class="string">"27017:27017"</span></span><br><span class="line"><span class="attr">  angular:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">hellowoodes/angular</span></span><br><span class="line"><span class="attr">    depends_on:</span> </span><br><span class="line"><span class="bullet">      -</span> <span class="string">reverse-proxy</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">mongo</span></span><br><span class="line"><span class="attr">    expose:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"8081"</span></span><br><span class="line"><span class="attr">    healthcheck:</span></span><br><span class="line"><span class="attr">      test:</span> <span class="string">["CMD",</span> <span class="string">"curl"</span><span class="string">,</span> <span class="string">"-f"</span><span class="string">,</span> <span class="string">"http://localhost:8081/actuator/health"</span><span class="string">]</span></span><br><span class="line"><span class="attr">      interval:</span> <span class="number">10</span><span class="string">s</span></span><br><span class="line"><span class="attr">      timeout:</span> <span class="number">5</span><span class="string">s</span></span><br><span class="line"><span class="attr">      retries:</span> <span class="number">3</span></span><br><span class="line"><span class="attr">    labels:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"traefik.frontend.rule=Host:angular.localhost"</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"traefik.frontend.rule=PathPrefixStrip:/"</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"traefik.backend=angular"</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"traefik.port=8081"</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"traefik.weight=10"</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"traefik.enable=true"</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"traefik.passHostHeader=true"</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"traefik.docker.network=ntw_front"</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"traefik.frontend.entryPoints=http"</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"traefik.backend.loadbalancer.swarm=true"</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"traefik.backend.loadbalancer.method=drr"</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>启动</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+<p>启动后访问 <a href="http://angular.localhost/" target="_blank" rel="noopener">http://angular.localhost</a></p>
+<p><img src="https://hellowood.oss-cn-beijing.aliyuncs.com/blog/treafik-03.png" alt="03"></p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Docker" >
+    <span class="tag-code">Docker</span>
+  </a>
+
+  <a href="/tags#Traefix" >
+    <span class="tag-code">Traefix</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#微服务网关-Traefik-Docker-Swarm-使用"><span class="toc-nav-text">微服务网关 Traefik - Docker Swarm 使用</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Docker-Swarm-使用"><span class="toc-nav-text">Docker Swarm 使用</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#启动官方-Demo"><span class="toc-nav-text">启动官方 Demo</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#修改访问规则，使用后缀访问"><span class="toc-nav-text">修改访问规则，使用后缀访问</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#指定域名访问"><span class="toc-nav-text">指定域名访问</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#部署单个应用"><span class="toc-nav-text">部署单个应用</span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+<script>
+  (function () {
+    var url = 'http://hellowood.github.io/2019/03/24/微服务网关-Traefik-Docker-Swarm-使用/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "helloworlde";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "微服务网关 Traefik - Docker Swarm 使用",
+        owner: "helloworlde",
+        repo: "helloworlde.github.io",
+        oauth: {
+          client_id: "2ddfebc6b5d4be13061d",
+          client_secret: "46e9112f9d6c44127830ade61da6d259d981c932"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    There is path to everyone 
+  </p>
+</footer>
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>
