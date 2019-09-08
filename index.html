@@ -115,105 +115,246 @@
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2019/05/27/Ubuntu-Docker-替换软件源/">Ubuntu/Docker 替换软件源</a>
+        <a href="/2019/09/08/Kubenetes-部署-Dashboard/">Kubenetes 部署 Dashboard</a>
       </h2>
-      <p class="article-date">May 27, 2019</p>
+      <p class="article-date">September 8, 2019</p>
       
         
-  <a href="/tags#Docker" >
-    <span class="tag-code">Docker</span>
-  </a>
-
-  <a href="/tags#Ubuntu" >
-    <span class="tag-code">Ubuntu</span>
+  <a href="/tags#Kubernetes" >
+    <span class="tag-code">Kubernetes</span>
   </a>
 
       
       <div class="article-summary">
         
-          Ubuntu/Docker 替换软件源Ubuntu使用 sed 命令1sudo sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apt/sources.list/
-手动修改12345cd /etc/apt/sudo mv ...
+          Kubenetes 部署 Dashboard
+Kubenestes Dashboard 是提供 Kubernetes信息可视化的 Web 插件
+
+部署1kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboar ...
         
       </div>
-      <a class="more" href="/2019/05/27/Ubuntu-Docker-替换软件源/"></a>
+      <a class="more" href="/2019/09/08/Kubenetes-部署-Dashboard/"></a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2019/05/15/Google-Cloud-Run-部署-Knative-Serverless-应用/">Google Cloud Run 部署 Knative Serverless 应用 </a>
+        <a href="/2019/09/08/Spring-Cloud-使用-Kubernetes-作为配置中心-使用加密配置/">Spring Cloud 使用 Kubernetes 作为配置中心 - 使用加密配置</a>
       </h2>
-      <p class="article-date">May 15, 2019</p>
+      <p class="article-date">September 8, 2019</p>
       
         
-  <a href="/tags#Serverless" >
-    <span class="tag-code">Serverless</span>
+  <a href="/tags#Kubernetes" >
+    <span class="tag-code">Kubernetes</span>
   </a>
 
-  <a href="/tags#Google" >
-    <span class="tag-code">Google</span>
+  <a href="/tags#SpringCloud" >
+    <span class="tag-code">SpringCloud</span>
   </a>
 
-  <a href="/tags#Cloud Run" >
-    <span class="tag-code">Cloud Run</span>
+      
+      <div class="article-summary">
+        
+          Spring Cloud 使用 Kubernetes 作为配置中心 - 使用加密配置
+Spring Cloud 可以通过使用 Kubernetes 的 Secrets 作为加密配置
+
+创建应用添加依赖
+build.gradle
+
+123dependencies &#123;	implemen ...
+        
+      </div>
+      <a class="more" href="/2019/09/08/Spring-Cloud-使用-Kubernetes-作为配置中心-使用加密配置/"></a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2019/09/08/Spring-Cloud-使用-Kubernetes-作为配置中心/">Spring Cloud 使用 Kubernetes 作为配置中心</a>
+      </h2>
+      <p class="article-date">September 8, 2019</p>
+      
+        
+  <a href="/tags#Kubernetes" >
+    <span class="tag-code">Kubernetes</span>
   </a>
 
+  <a href="/tags#SpringCloud" >
+    <span class="tag-code">SpringCloud</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          Spring Cloud 使用 Kubernetes 作为配置中心
+Spring Cloud 可以通过使用 Kubernetes 的 ConfigMap 作为配置中心，实现配置的拉取和刷新
+
+创建应用添加依赖
+build.gradle 
+
+123dependencies &#123;	imp ...
+        
+      </div>
+      <a class="more" href="/2019/09/08/Spring-Cloud-使用-Kubernetes-作为配置中心/"></a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2019/09/08/Spring-Cloud-使用-Kubernetes-作为注册中心/">Spring Cloud 使用 Kubernetes 作为注册中心</a>
+      </h2>
+      <p class="article-date">September 8, 2019</p>
+      
+        
+  <a href="/tags#Kubernetes" >
+    <span class="tag-code">Kubernetes</span>
+  </a>
+
+  <a href="/tags#SpringCloud" >
+    <span class="tag-code">SpringCloud</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          Spring Cloud 使用 Kubernetes 作为注册中心
+Spring Cloud 可以使用 Kubernetes 作为注册中心，实现服务注册和发现
+
+创建两个应用，Consumer 和 Provider，Provider 提供一个 REST 接口供 Consumer 调用
+Pro ...
+        
+      </div>
+      <a class="more" href="/2019/09/08/Spring-Cloud-使用-Kubernetes-作为注册中心/"></a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2019/09/08/Kubenetes-中使用-Traefik-作为-Ingress-转发流量/">Kubenetes 中使用 Traefik 作为 Ingress 转发流量</a>
+      </h2>
+      <p class="article-date">September 8, 2019</p>
+      
+        
+  <a href="/tags#Kubernetes" >
+    <span class="tag-code">Kubernetes</span>
+  </a>
+
+  <a href="/tags#Helm" >
+    <span class="tag-code">Helm</span>
+  </a>
+
+  <a href="/tags#Traefik" >
+    <span class="tag-code">Traefik</span>
+  </a>
+
+  <a href="/tags#Ingress" >
+    <span class="tag-code">Ingress</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          Kubenetes 中使用 Traefik 作为 Ingress 转发流量Ingress 就是 Kubernetes 机器外访问集群的入口，将请求的 URL 转发到不同的 Service 上，相当于 Nginx 等代理服务器路由信息由 Ingress Controller 提供，Ingres ...
+        
+      </div>
+      <a class="more" href="/2019/09/08/Kubenetes-中使用-Traefik-作为-Ingress-转发流量/"></a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2019/09/08/Kubernetes-中使用-Helm-部署应用/">Kubernetes 中使用 Helm 部署应用</a>
+      </h2>
+      <p class="article-date">September 8, 2019</p>
+      
+        
+  <a href="/tags#Kubernetes" >
+    <span class="tag-code">Kubernetes</span>
+  </a>
+
+  <a href="/tags#Helm" >
+    <span class="tag-code">Helm</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          Kubernetes 中使用 Helm 部署应用创建应用创建一个简单的应用，提供一个 REST 接口；使用 Golang 编写，然后将镜像 push 到 Docker Hub
+
+go.mod
+
+123module github.com/helloworlde/restgo 1.12
+
+mai ...
+        
+      </div>
+      <a class="more" href="/2019/09/08/Kubernetes-中使用-Helm-部署应用/"></a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2019/09/08/Kubernetes-中安装-Helm/">Kubernetes 中安装 Helm</a>
+      </h2>
+      <p class="article-date">September 8, 2019</p>
+      
+        
+  <a href="/tags#Kubernetes" >
+    <span class="tag-code">Kubernetes</span>
+  </a>
+
+  <a href="/tags#Helm" >
+    <span class="tag-code">Helm</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          Kubernetes 中安装 Helm
+Helm 是构建于 Kubernetes 之上的包管理器，可以理解为 yum，homebrew 或者 pip，用于简化包分发，安装，版本管理等操作流程
+
+基本概念
+Chart
+
+chart 就是 Helm 所管理的包，包含着一个应用要部署至 Kuber ...
+        
+      </div>
+      <a class="more" href="/2019/09/08/Kubernetes-中安装-Helm/"></a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2019/09/08/Go-开发命令行工具-OSS文件上传/">Go 开发命令行工具-OSS文件上传</a>
+      </h2>
+      <p class="article-date">September 8, 2019</p>
+      
+        
   <a href="/tags#Go" >
     <span class="tag-code">Go</span>
   </a>
 
-      
-      <div class="article-summary">
-        
-          Google Cloud Run 部署Knative Serverless 应用
-Google Cloud Run 是 Google 最近推出的基于容器运行的支持 Serverless 应用的服务，是 Knative 的Google Cloud 托管版本；和其他的 Serverless 如G ...
-        
-      </div>
-      <a class="more" href="/2019/05/15/Google-Cloud-Run-部署-Knative-Serverless-应用/"></a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2019/05/06/AWS-Lambda-部署-SpringBoot-应用/">AWS Lambda 部署 SpringBoot 应用</a>
-      </h2>
-      <p class="article-date">May 6, 2019</p>
-      
-        
-  <a href="/tags#Serverless" >
-    <span class="tag-code">Serverless</span>
-  </a>
-
-  <a href="/tags#SpringBoot" >
-    <span class="tag-code">SpringBoot</span>
-  </a>
-
-  <a href="/tags#Lambda" >
-    <span class="tag-code">Lambda</span>
-  </a>
-
-  <a href="/tags#AWS" >
-    <span class="tag-code">AWS</span>
+  <a href="/tags#Cobra" >
+    <span class="tag-code">Cobra</span>
   </a>
 
       
       <div class="article-summary">
         
-          AWS Lambda 部署 SpringBoot 应用配置 AWS CLI 和  SeverlessAWS CLI 和 Serverless 都可以用于部署 Serverless 应用
-获取密钥
-登录 AWS， 在服务中搜索并选择 IAM，之后选择用户，添加用户
+          使用 Go 开发命令行工具-OSS 文件上
+使用 Go 语言开发一个命令行工具，用于向 OSS 文件上传文件命令行工具有很多框架，选择使用 Cobra
 
+准备
+安装 Cobra
 
+1go get -u github.com/spf13/cobra/cobra
+初始化项目
+创建项目
 
-输入用户名，选择编程访 ...
+1234 ...
         
       </div>
-      <a class="more" href="/2019/05/06/AWS-Lambda-部署-SpringBoot-应用/"></a>
+      <a class="more" href="/2019/09/08/Go-开发命令行工具-OSS文件上传/"></a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2019/03/29/MyBatis-查询错误：java-lang-IllegalArgumentException-invalid-comparison-java-util-Date-and-java-lang-String/">MyBatis 查询错误：java.lang.IllegalArgumentException: invalid comparison: java.util.Date and java.lang.String</a>
+        <a href="/2019/09/08/Spring-Boot-中使用Spring-Cloud-Stream/">Spring Boot 中使用Spring Cloud Stream</a>
       </h2>
-      <p class="article-date">March 29, 2019</p>
+      <p class="article-date">September 8, 2019</p>
       
         
   <a href="/tags#SpringBoot" >
@@ -224,132 +365,30 @@ Google Cloud Run 是 Google 最近推出的基于容器运行的支持 Serverles
     <span class="tag-code">Java</span>
   </a>
 
-  <a href="/tags#MyBatis" >
-    <span class="tag-code">MyBatis</span>
+  <a href="/tags#Stream" >
+    <span class="tag-code">Stream</span>
   </a>
 
       
       <div class="article-summary">
         
-          MyBatis 查询错误：java.lang.IllegalArgumentException: invalid comparison: java.util.Date and java.lang.String项目中用 MyBatis Plus 替换了 MyBatis，原来的 MyBatis版 ...
+          Spring Boot 中使用Spring Cloud Stream
+Spring Cloud Stream 用于构建高可扩展的使用消息系统连接的事件驱动服务的框架
+
+
+Binder: 负责提供与外部消息系统集成的组件
+Binding: 提供外部消息系统与应用之间桥接的生产者和消费者
+Mes ...
         
       </div>
-      <a class="more" href="/2019/03/29/MyBatis-查询错误：java-lang-IllegalArgumentException-invalid-comparison-java-util-Date-and-java-lang-String/"></a>
+      <a class="more" href="/2019/09/08/Spring-Boot-中使用Spring-Cloud-Stream/"></a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2019/03/24/微服务网关-Traefik-Docker-Swarm-使用/">微服务网关 Traefik - Docker Swarm 使用</a>
+        <a href="/2019/09/08/Spring-Boot-中使用-WebSocket/">Spring Boot 中使用 WebSocket</a>
       </h2>
-      <p class="article-date">March 24, 2019</p>
-      
-        
-  <a href="/tags#Docker" >
-    <span class="tag-code">Docker</span>
-  </a>
-
-  <a href="/tags#Traefix" >
-    <span class="tag-code">Traefix</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          微服务网关 Traefik - Docker Swarm 使用traefik 是一个用 Go 开发的适用于微服务的反向代理和负载均衡的网关；可以自动发现并代理服务，可以用 Kubernetes 或 Docker Swarm 等方式，支持使用 Eureka，Consul，Etcd，ZooKee ...
-        
-      </div>
-      <a class="more" href="/2019/03/24/微服务网关-Traefik-Docker-Swarm-使用/"></a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2019/01/29/GraphQL-Spring-Boot-使用/">GraphQL Spring Boot 使用</a>
-      </h2>
-      <p class="article-date">January 29, 2019</p>
-      
-        
-  <a href="/tags#SpringBoot" >
-    <span class="tag-code">SpringBoot</span>
-  </a>
-
-  <a href="/tags#GraphQL" >
-    <span class="tag-code">GraphQL</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          GraphQL Spring Boot 使用项目地址 https://github.com/helloworlde/spring-boot-graphql-demo
-
-使用 SpringBoot 和 GraphQL 创建一个最简单的增删改查接口应用，使用 MongoDB 存储数据
-
-创建应用 ...
-        
-      </div>
-      <a class="more" href="/2019/01/29/GraphQL-Spring-Boot-使用/"></a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2019/01/07/MySQL-中关于gap-lock-next-key-lock-的一个问题/">MySQL 中关于gap lock / next-key lock 的一个问题</a>
-      </h2>
-      <p class="article-date">January 7, 2019</p>
-      
-        
-  <a href="/tags#MySQL" >
-    <span class="tag-code">MySQL</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          MySQL 中关于gap lock / next-key lock 的一个问题
-在学习 MySQL 的过程中遇到的一个关于锁的问题，包含多个 MySQL 相关的知识；相关资料在文章末尾
-
-问题描述
-表初始化
-
-1234567891011121314CREATE TABLE z (  id I ...
-        
-      </div>
-      <a class="more" href="/2019/01/07/MySQL-中关于gap-lock-next-key-lock-的一个问题/"></a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2018/12/31/SpringBoot-使用-MySQL保存emoji-表情/">SpringBoot 使用 MySQL保存emoji 表情</a>
-      </h2>
-      <p class="article-date">December 31, 2018</p>
-      
-        
-  <a href="/tags#SpringBoot" >
-    <span class="tag-code">SpringBoot</span>
-  </a>
-
-  <a href="/tags#MySQL" >
-    <span class="tag-code">MySQL</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          SpringBoot 使用 MySQL保存emoji 表情
-在使用 SpringBoot 开发的应用中，有表单提交的内容中含有 emoji 表情，导致保存失败；这是因为MySQL 默认的 utf8 长度为3位，emoji 表情有4位
-
-
-更改表的字符集为utf8mb4
-
-1ALTER TAB ...
-        
-      </div>
-      <a class="more" href="/2018/12/31/SpringBoot-使用-MySQL保存emoji-表情/"></a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2018/12/31/Spring-Boot-配置-HTTPS-访问/">Spring Boot 配置 HTTPS 访问</a>
-      </h2>
-      <p class="article-date">December 31, 2018</p>
+      <p class="article-date">September 8, 2019</p>
       
         
   <a href="/tags#SpringBoot" >
@@ -360,50 +399,23 @@ Google Cloud Run 是 Google 最近推出的基于容器运行的支持 Serverles
     <span class="tag-code">Java</span>
   </a>
 
-      
-      <div class="article-summary">
-        
-          Spring Boot 配置 HTTPS 访问
-相关代码
-
-生成证书
-创建新证书
-
-1234567891011121314151617keytool -genkeypair -alias hellowood -keyalg RSA -keysize 2048 -storetype PKCS1 ...
-        
-      </div>
-      <a class="more" href="/2018/12/31/Spring-Boot-配置-HTTPS-访问/"></a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2018/12/24/SpringBoot-中-Spring-Security-403-自定义返回消息/">SpringBoot 中 Spring Security 403 自定义返回消息</a>
-      </h2>
-      <p class="article-date">December 24, 2018</p>
-      
-        
-  <a href="/tags#SpringBoot" >
-    <span class="tag-code">SpringBoot</span>
-  </a>
-
-  <a href="/tags#Java" >
-    <span class="tag-code">Java</span>
-  </a>
-
-  <a href="/tags#SpringSecurity" >
-    <span class="tag-code">SpringSecurity</span>
+  <a href="/tags#WebSocket" >
+    <span class="tag-code">WebSocket</span>
   </a>
 
       
       <div class="article-summary">
         
-          SpringBoot 中 Spring Security 403 自定义返回消息
-自定义处理类 CustomAccessDeniedHandler 
+          Spring Boot  中使用 WebSocket
+WebSocket 是一种长连接技术，可以实现服务端和客户端的双向通信，服务端可以主动推送信息给客户端
 
-1234567891011121314151617181920212223242526272829303132333435363738394 ...
+构建应用添加依赖
+build.gradle
+
+12345678910dependencies &#123;    compile(" ...
         
       </div>
-      <a class="more" href="/2018/12/24/SpringBoot-中-Spring-Security-403-自定义返回消息/"></a>
+      <a class="more" href="/2019/09/08/Spring-Boot-中使用-WebSocket/"></a>
     </article>
   
 

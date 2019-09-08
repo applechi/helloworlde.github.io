@@ -115,203 +115,7 @@
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2018/01/01/Gauge基础知识/">Gauge基础知识</a>
-      </h2>
-      <p class="article-date">January 1, 2018</p>
-      
-        
-  <a href="/tags#Java" >
-    <span class="tag-code">Java</span>
-  </a>
-
-  <a href="/tags#Gauge" >
-    <span class="tag-code">Gauge</span>
-  </a>
-
-  <a href="/tags#Test" >
-    <span class="tag-code">Test</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          本文所有内容均参照自Gauge官方文档
-
-
-#基本思想Gauge入门比较简单，Gauge的基本思想就是通过.spec 或者.md 文件，使用MarkDown语法去规定执行的动作，然后由Java或者其他语言的文件去按照所写的.spec 或者.md 文件的顺序去执行Java文件，从而达到测试的目 ...
-        
-      </div>
-      <a class="more" href="/2018/01/01/Gauge基础知识/"></a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2018/01/01/在IDEA中配置Gauge环境/">在IDEA中配置Gauge环境</a>
-      </h2>
-      <p class="article-date">January 1, 2018</p>
-      
-        
-  <a href="/tags#Java" >
-    <span class="tag-code">Java</span>
-  </a>
-
-  <a href="/tags#Gauge" >
-    <span class="tag-code">Gauge</span>
-  </a>
-
-  <a href="/tags#Test" >
-    <span class="tag-code">Test</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-Gauge是一个自动化测试工具，主要是通过.spec 文件指定执行的步骤，然后由Java代码去测试
-
-首先，下载安装Gauge
-安装后通过cmd运行guage -v 来确认Gauge安装成功
-安装成功后安装Gauge的插件
-
-gauge --install-all
-或者可以用 gauge  ...
-        
-      </div>
-      <a class="more" href="/2018/01/01/在IDEA中配置Gauge环境/"></a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2018/01/01/Gauge中Gradle自定义Task失败的解决方法/">Gauge中Gradle自定义Task失败的解决方法</a>
-      </h2>
-      <p class="article-date">January 1, 2018</p>
-      
-        
-  <a href="/tags#Java" >
-    <span class="tag-code">Java</span>
-  </a>
-
-  <a href="/tags#Gauge" >
-    <span class="tag-code">Gauge</span>
-  </a>
-
-  <a href="/tags#Test" >
-    <span class="tag-code">Test</span>
-  </a>
-
-  <a href="/tags#Gradle" >
-    <span class="tag-code">Gradle</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          ##Gauge中加入了Gradle之后根据官方文档自定义task并不能执行
-1234567891011task gaugeTest(type: GaugeTask) &#123;    doFirst &#123;        gauge &#123;            specsDi ...
-        
-      </div>
-      <a class="more" href="/2018/01/01/Gauge中Gradle自定义Task失败的解决方法/"></a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2018/01/01/IDEA-Maven项目导入失败，无法识别pom文件/">IDEA Maven项目导入失败，无法识别pom文件</a>
-      </h2>
-      <p class="article-date">January 1, 2018</p>
-      
-        
-  <a href="/tags#Java" >
-    <span class="tag-code">Java</span>
-  </a>
-
-  <a href="/tags#Maven" >
-    <span class="tag-code">Maven</span>
-  </a>
-
-  <a href="/tags#IDEA" >
-    <span class="tag-code">IDEA</span>
-  </a>
-
-  <a href="/tags#Experience" >
-    <span class="tag-code">Experience</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          解决思路
-按照以下顺序逐个检查，更改host文件比价极端，应该很少见1. 重启IDEA2. 重启电脑3. 重新导入项目4. 重装Maven5. 重装IDEA6. 检查host文件中有没有其他地址指向localhost
-
-
-一个Maven项目，之前是可以正常使用的，没有任何问题，但是今天去De ...
-        
-      </div>
-      <a class="more" href="/2018/01/01/IDEA-Maven项目导入失败，无法识别pom文件/"></a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2018/01/01/Spring-Boot-Actuator-添加-Git-和-Build-信息/">Spring Boot Actuator 添加 Git 和 Build 信息</a>
-      </h2>
-      <p class="article-date">January 1, 2018</p>
-      
-        
-  <a href="/tags#SpringBoot" >
-    <span class="tag-code">SpringBoot</span>
-  </a>
-
-  <a href="/tags#Java" >
-    <span class="tag-code">Java</span>
-  </a>
-
-  <a href="/tags#Actuator" >
-    <span class="tag-code">Actuator</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-在使用 Spring Boot Actuator 时可以通过生成 Git 和编译文件来提供信息
-
-添加 Git 信息
-添加插件
-在 build.gradle 文件中添加一下配置
-
-
-
-123456789101112buildscript &#123;     repositories &# ...
-        
-      </div>
-      <a class="more" href="/2018/01/01/Spring-Boot-Actuator-添加-Git-和-Build-信息/"></a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2018/01/01/Tomcat启动时一直停留在一个应用的发布的解决办法/">Tomcat启动时一直停留在一个应用的发布的解决办法</a>
-      </h2>
-      <p class="article-date">January 1, 2018</p>
-      
-        
-  <a href="/tags#Tomcat" >
-    <span class="tag-code">Tomcat</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-Tomcat在启动时一直停留在某一个应用无法启动或者需要很长时间才能启动，提示Deploying web application directory [/home/dev/tomcat/apache-tomcat-9.0.0.M26/webapps/ROOT，可以通过如下配置来加速启动
-
- ...
-        
-      </div>
-      <a class="more" href="/2018/01/01/Tomcat启动时一直停留在一个应用的发布的解决办法/"></a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2018/01/01/SpringMVC-生成验证码/">SpringMVC 生成验证码</a>
+        <a href="/2018/01/01/Spring-MVC简单实现国际化-多语言/">Spring MVC简单实现国际化/多语言</a>
       </h2>
       <p class="article-date">January 1, 2018</p>
       
@@ -324,22 +128,28 @@ Tomcat在启动时一直停留在某一个应用无法启动或者需要很长�
     <span class="tag-code">SrpingMVC</span>
   </a>
 
+  <a href="/tags#i18n" >
+    <span class="tag-code">i18n</span>
+  </a>
+
       
       <div class="article-summary">
         
           
-使用 Google kaptcha 为 SpringMVC Maven 项目生成验证码
+SpringMVC 可以通过Spring框架来实现多语言
 
-##1 添加依赖
-12345&lt;dependency&gt;    &lt;groupId&gt;com.github.penggle&lt;/groupId&gt;    &lt;artifac ...
+1. 创建SpringMVC项目
+配置web.xml
+
+1234567891011121314151617181920212223242526272829303132333435363738394041&lt;?xml versi ...
         
       </div>
-      <a class="more" href="/2018/01/01/SpringMVC-生成验证码/"></a>
+      <a class="more" href="/2018/01/01/Spring-MVC简单实现国际化-多语言/"></a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2018/01/01/IDEA启动Spring-Boot项目提示Unable-to-start-EmbeddedWebApplicationContext-due-to-missing-EmbeddedServlet/">IDEA启动Spring Boot项目提示Unable to start EmbeddedWebApplicationContext due to missing EmbeddedServlet...</a>
+        <a href="/2018/01/01/SpringBoot中Junit测试注入Bean失败的解决方法/">SpringBoot中Junit测试注入Bean失败的解决方法</a>
       </h2>
       <p class="article-date">January 1, 2018</p>
       
@@ -352,68 +162,240 @@ Tomcat在启动时一直停留在某一个应用无法启动或者需要很长�
     <span class="tag-code">Java</span>
   </a>
 
-  <a href="/tags#IDEA" >
-    <span class="tag-code">IDEA</span>
-  </a>
-
-  <a href="/tags#Exception" >
-    <span class="tag-code">Exception</span>
+  <a href="/tags#Junit" >
+    <span class="tag-code">Junit</span>
   </a>
 
       
       <div class="article-summary">
         
           
-导入一个gradle 的Spring Boot项目，在启动的时候先提示找不到HttpServletRequest这个包，错误如下：
+在SpringBoot中使用Junit做测试的时候测试DAO层的接口，但是一直提示注入Bean失败，报以下错误：
 
-123456Caused by: java.lang.ClassNotFoundException: javax.servlet.http.HttpServ ...
+1org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean  ...
         
       </div>
-      <a class="more" href="/2018/01/01/IDEA启动Spring-Boot项目提示Unable-to-start-EmbeddedWebApplicationContext-due-to-missing-EmbeddedServlet/"></a>
+      <a class="more" href="/2018/01/01/SpringBoot中Junit测试注入Bean失败的解决方法/"></a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2018/01/01/IDEA中Spring-Boot项目MyBaits提示Invalid-bound-statement-not-found-错误/">IDEA中Spring Boot项目MyBaits提示Invalid bound statement (not found)错误</a>
+        <a href="/2018/01/01/AngularJS中使用ngTable/">AngularJS中使用ngTable</a>
       </h2>
       <p class="article-date">January 1, 2018</p>
       
         
-  <a href="/tags#SpringBoot" >
-    <span class="tag-code">SpringBoot</span>
+  <a href="/tags#AngularJs" >
+    <span class="tag-code">AngularJs</span>
   </a>
 
+  <a href="/tags#ngTable" >
+    <span class="tag-code">ngTable</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+在HTML中使用ngTable 可以方便的进行排序，筛选，分页，添加，编辑删除等操作，不用再从数据库里面进行分页等操作
+
+
+需要引用的文件
+angular.js
+ng-table.js
+ng-table.css
+bootrasp.css
+
+
+
+
+
+注入依赖
+为ng-table 设置属性和数 ...
+        
+      </div>
+      <a class="more" href="/2018/01/01/AngularJS中使用ngTable/"></a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2018/01/01/AngularJS发送异步Get-Post请求/">AngularJS发送异步Get/Post请求</a>
+      </h2>
+      <p class="article-date">January 1, 2018</p>
+      
+        
+  <a href="/tags#AngularJs" >
+    <span class="tag-code">AngularJs</span>
+  </a>
+
+  <a href="/tags#Request" >
+    <span class="tag-code">Request</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+           1 . 在页面中加入AngularJS并为页面绑定ng-app 和 ng-controller
+1234&lt;body ng-app=&quot;MyApp&quot; ng-controller=&quot;MyCtrl&quot; &gt;...&lt;script src=&quo ...
+        
+      </div>
+      <a class="more" href="/2018/01/01/AngularJS发送异步Get-Post请求/"></a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2018/01/01/HTML中使用Ajax进行局部刷新页面/">HTML中使用Ajax进行局部刷新页面</a>
+      </h2>
+      <p class="article-date">January 1, 2018</p>
+      
+        
+  <a href="/tags#HTML" >
+    <span class="tag-code">HTML</span>
+  </a>
+
+  <a href="/tags#Jquery" >
+    <span class="tag-code">Jquery</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          #HTML中使用Ajax进行局部刷新页面，使用JS将数据发送到后台
+
+##1.在HTML页面中使用js脚本将请求数据发送给后台servlet
+
+由按钮触发事件
+
+1&lt;button id=&quot;select&quot; onclick=&quot;queryInfos()&quot ...
+        
+      </div>
+      <a class="more" href="/2018/01/01/HTML中使用Ajax进行局部刷新页面/"></a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2018/01/01/解决从GitHub上下载文件慢的问题/">解决从GitHub上下载文件慢的问题</a>
+      </h2>
+      <p class="article-date">January 1, 2018</p>
+      
+        
+  <a href="/tags#Experience" >
+    <span class="tag-code">Experience</span>
+  </a>
+
+  <a href="/tags#GitHub" >
+    <span class="tag-code">GitHub</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+解决从GitHub上下载文件慢的问题从GitHub下载文件一直非常慢，查看下载链接发现最终被指向了Amazon的服务器，下载地址是http://github-cloud.s3.amazonaws.com/，从国内访问Amazon非常慢，所以总是下载失败，解决方法时更改host文件，使该域名 ...
+        
+      </div>
+      <a class="more" href="/2018/01/01/解决从GitHub上下载文件慢的问题/"></a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2018/01/01/Gauge中执行数据库测试/">Gauge中执行数据库测试</a>
+      </h2>
+      <p class="article-date">January 1, 2018</p>
+      
+        
   <a href="/tags#Java" >
     <span class="tag-code">Java</span>
   </a>
 
-  <a href="/tags#MyBatis" >
-    <span class="tag-code">MyBatis</span>
+  <a href="/tags#Gauge" >
+    <span class="tag-code">Gauge</span>
   </a>
 
-  <a href="/tags#Exception" >
-    <span class="tag-code">Exception</span>
+  <a href="/tags#Test" >
+    <span class="tag-code">Test</span>
   </a>
 
       
       <div class="article-summary">
         
           
-一个SpringBoot项目在STS中是正常的，没有任何问题，但是导入到IDEA中之后启动就提示org.apache.ibatis.binding.BindingException: Invalid bound statement (not found)错误
+使用Gauge对数据库的增删改查进行测试
 
-1232017-05-01  ...
+
+打开数据库连接
+.spec文件
+
+1* open connection before crud
+
+.java文件
+
+1234567891011121314151617private Connection connection;private P ...
         
       </div>
-      <a class="more" href="/2018/01/01/IDEA中Spring-Boot项目MyBaits提示Invalid-bound-statement-not-found-错误/"></a>
+      <a class="more" href="/2018/01/01/Gauge中执行数据库测试/"></a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2018/01/01/Gradle 使用-编译时下载依赖失败解决方法/">Gradle 使用-编译时下载依赖失败解决方法</a>
+        <a href="/2018/01/01/Gauge中执行Http请求测试/">Gauge中执行Http请求测试</a>
       </h2>
       <p class="article-date">January 1, 2018</p>
       
         
+  <a href="/tags#Java" >
+    <span class="tag-code">Java</span>
+  </a>
+
+  <a href="/tags#Gauge" >
+    <span class="tag-code">Gauge</span>
+  </a>
+
+  <a href="/tags#Test" >
+    <span class="tag-code">Test</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+通过Gauge执行自动化测试，测试Http请求
+
+通过Java发送Http 请求来测试服务器请求执行状态
+
+
+
+##GET请求
+
+.spec文件
+
+12345## query userquery all usertags: query,request,http* query user
+
+. ...
+        
+      </div>
+      <a class="more" href="/2018/01/01/Gauge中执行Http请求测试/"></a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2018/01/01/使用Gradle编译执行Gague项目/">使用Gradle编译执行Gague项目</a>
+      </h2>
+      <p class="article-date">January 1, 2018</p>
+      
+        
+  <a href="/tags#Java" >
+    <span class="tag-code">Java</span>
+  </a>
+
+  <a href="/tags#Gauge" >
+    <span class="tag-code">Gauge</span>
+  </a>
+
+  <a href="/tags#Test" >
+    <span class="tag-code">Test</span>
+  </a>
+
   <a href="/tags#Gradle" >
     <span class="tag-code">Gradle</span>
   </a>
@@ -421,11 +403,50 @@ Tomcat在启动时一直停留在某一个应用无法启动或者需要很长�
       
       <div class="article-summary">
         
-          
-如果Gradle在编译的时候没有在本地仓库中发现依赖，就会从远程仓库中下载，默认的远程仓库为mavenCentral()，也就是http://repo1.maven.org/maven2/，但是往往访问速度特别慢，不翻墙经常会下载超时或者需要很长时间导致Build失败，因此，可以用国内的仓 ...
+          使用Gradle编译运行Gauge项目可以很大程度解决依赖的问题，并且可以根据需要创建多个不同的Task来在不同的环境运行或执行不同的操作
+
+创建Gauge项目
+首先在IDEA中创建一个Gauge项目
+打开命令行，执行gradle init 初始化Gradle项目
+修改build.gradl ...
         
       </div>
-      <a class="more" href="/2018/01/01/Gradle 使用-编译时下载依赖失败解决方法/"></a>
+      <a class="more" href="/2018/01/01/使用Gradle编译执行Gague项目/"></a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2018/01/01/Gauge中执行钩子-Hook/">Gauge中执行钩子(Hook)</a>
+      </h2>
+      <p class="article-date">January 1, 2018</p>
+      
+        
+  <a href="/tags#Java" >
+    <span class="tag-code">Java</span>
+  </a>
+
+  <a href="/tags#Gauge" >
+    <span class="tag-code">Gauge</span>
+  </a>
+
+  <a href="/tags#Test" >
+    <span class="tag-code">Test</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          本文所有内容均参考自Gauge官方文档
+
+
+钩子可以理解为Java中的AOP(Aspect Oriented Programming)，把Specification或Scenario当做一个切面，在执行之前和执行之后做一些操作
+
+
+Suit Hook
+作用于所有的Specification， ...
+        
+      </div>
+      <a class="more" href="/2018/01/01/Gauge中执行钩子-Hook/"></a>
     </article>
   
 
