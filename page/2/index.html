@@ -115,307 +115,247 @@
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2019/09/08/Kubenetes-部署-Dashboard/">Kubenetes 部署 Dashboard</a>
+        <a href="/2020/09/20/gRPC-中-Binlog-打印原理/">gRPC 中 Binlog 打印原理</a>
       </h2>
-      <p class="article-date">September 8, 2019</p>
+      <p class="article-date">September 20, 2020</p>
       
         
-  <a href="/tags#Kubernetes" >
-    <span class="tag-code">Kubernetes</span>
+  <a href="/tags#gRPC" >
+    <span class="tag-code">gRPC</span>
   </a>
 
       
       <div class="article-summary">
         
-          Kubenetes 部署 Dashboard
-Kubenestes Dashboard 是提供 Kubernetes信息可视化的 Web 插件
+          gRPC 中 Binlog 打印原理gRPC 支持将请求调用的参数、Header 等信息以二进制的方式输出到文件中
+使用binlog 的依赖在 grpc-services中，所以需要有该依赖
 
-部署1kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboar ...
+创建 Channel 时指定
+
+12345BinaryLog binaryLog = Binary ...
         
       </div>
-      <a class="more" href="/2019/09/08/Kubenetes-部署-Dashboard/"></a>
+      <a class="more" href="/2020/09/20/gRPC-中-Binlog-打印原理/"></a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2019/09/08/Spring-Cloud-使用-Kubernetes-作为配置中心-使用加密配置/">Spring Cloud 使用 Kubernetes 作为配置中心 - 使用加密配置</a>
+        <a href="/2020/09/20/Spring-Boot-2-3-Liveness-和-Readness-接口使用/">Spring Boot 2.3+ Liveness 和 Readness 接口使用</a>
       </h2>
-      <p class="article-date">September 8, 2019</p>
-      
-        
-  <a href="/tags#Kubernetes" >
-    <span class="tag-code">Kubernetes</span>
-  </a>
-
-  <a href="/tags#SpringCloud" >
-    <span class="tag-code">SpringCloud</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          Spring Cloud 使用 Kubernetes 作为配置中心 - 使用加密配置
-Spring Cloud 可以通过使用 Kubernetes 的 Secrets 作为加密配置
-
-创建应用添加依赖
-build.gradle
-
-123dependencies &#123;	implemen ...
-        
-      </div>
-      <a class="more" href="/2019/09/08/Spring-Cloud-使用-Kubernetes-作为配置中心-使用加密配置/"></a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2019/09/08/Spring-Cloud-使用-Kubernetes-作为配置中心/">Spring Cloud 使用 Kubernetes 作为配置中心</a>
-      </h2>
-      <p class="article-date">September 8, 2019</p>
-      
-        
-  <a href="/tags#Kubernetes" >
-    <span class="tag-code">Kubernetes</span>
-  </a>
-
-  <a href="/tags#SpringCloud" >
-    <span class="tag-code">SpringCloud</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          Spring Cloud 使用 Kubernetes 作为配置中心
-Spring Cloud 可以通过使用 Kubernetes 的 ConfigMap 作为配置中心，实现配置的拉取和刷新
-
-创建应用添加依赖
-build.gradle 
-
-123dependencies &#123;	imp ...
-        
-      </div>
-      <a class="more" href="/2019/09/08/Spring-Cloud-使用-Kubernetes-作为配置中心/"></a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2019/09/08/Spring-Cloud-使用-Kubernetes-作为注册中心/">Spring Cloud 使用 Kubernetes 作为注册中心</a>
-      </h2>
-      <p class="article-date">September 8, 2019</p>
-      
-        
-  <a href="/tags#Kubernetes" >
-    <span class="tag-code">Kubernetes</span>
-  </a>
-
-  <a href="/tags#SpringCloud" >
-    <span class="tag-code">SpringCloud</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          Spring Cloud 使用 Kubernetes 作为注册中心
-Spring Cloud 可以使用 Kubernetes 作为注册中心，实现服务注册和发现
-
-创建两个应用，Consumer 和 Provider，Provider 提供一个 REST 接口供 Consumer 调用
-Pro ...
-        
-      </div>
-      <a class="more" href="/2019/09/08/Spring-Cloud-使用-Kubernetes-作为注册中心/"></a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2019/09/08/Kubenetes-中使用-Traefik-作为-Ingress-转发流量/">Kubenetes 中使用 Traefik 作为 Ingress 转发流量</a>
-      </h2>
-      <p class="article-date">September 8, 2019</p>
-      
-        
-  <a href="/tags#Kubernetes" >
-    <span class="tag-code">Kubernetes</span>
-  </a>
-
-  <a href="/tags#Helm" >
-    <span class="tag-code">Helm</span>
-  </a>
-
-  <a href="/tags#Traefik" >
-    <span class="tag-code">Traefik</span>
-  </a>
-
-  <a href="/tags#Ingress" >
-    <span class="tag-code">Ingress</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          Kubenetes 中使用 Traefik 作为 Ingress 转发流量Ingress 就是 Kubernetes 机器外访问集群的入口，将请求的 URL 转发到不同的 Service 上，相当于 Nginx 等代理服务器路由信息由 Ingress Controller 提供，Ingres ...
-        
-      </div>
-      <a class="more" href="/2019/09/08/Kubenetes-中使用-Traefik-作为-Ingress-转发流量/"></a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2019/09/08/Kubernetes-中使用-Helm-部署应用/">Kubernetes 中使用 Helm 部署应用</a>
-      </h2>
-      <p class="article-date">September 8, 2019</p>
-      
-        
-  <a href="/tags#Kubernetes" >
-    <span class="tag-code">Kubernetes</span>
-  </a>
-
-  <a href="/tags#Helm" >
-    <span class="tag-code">Helm</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          Kubernetes 中使用 Helm 部署应用创建应用创建一个简单的应用，提供一个 REST 接口；使用 Golang 编写，然后将镜像 push 到 Docker Hub
-
-go.mod
-
-123module github.com/helloworlde/restgo 1.12
-
-mai ...
-        
-      </div>
-      <a class="more" href="/2019/09/08/Kubernetes-中使用-Helm-部署应用/"></a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2019/09/08/Kubernetes-中安装-Helm/">Kubernetes 中安装 Helm</a>
-      </h2>
-      <p class="article-date">September 8, 2019</p>
-      
-        
-  <a href="/tags#Kubernetes" >
-    <span class="tag-code">Kubernetes</span>
-  </a>
-
-  <a href="/tags#Helm" >
-    <span class="tag-code">Helm</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          Kubernetes 中安装 Helm
-Helm 是构建于 Kubernetes 之上的包管理器，可以理解为 yum，homebrew 或者 pip，用于简化包分发，安装，版本管理等操作流程
-
-基本概念
-Chart
-
-chart 就是 Helm 所管理的包，包含着一个应用要部署至 Kuber ...
-        
-      </div>
-      <a class="more" href="/2019/09/08/Kubernetes-中安装-Helm/"></a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2019/09/08/Go-开发命令行工具-OSS文件上传/">Go 开发命令行工具-OSS文件上传</a>
-      </h2>
-      <p class="article-date">September 8, 2019</p>
-      
-        
-  <a href="/tags#Go" >
-    <span class="tag-code">Go</span>
-  </a>
-
-  <a href="/tags#Cobra" >
-    <span class="tag-code">Cobra</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          使用 Go 开发命令行工具-OSS 文件上
-使用 Go 语言开发一个命令行工具，用于向 OSS 文件上传文件命令行工具有很多框架，选择使用 Cobra
-
-准备
-安装 Cobra
-
-1go get -u github.com/spf13/cobra/cobra
-初始化项目
-创建项目
-
-1234 ...
-        
-      </div>
-      <a class="more" href="/2019/09/08/Go-开发命令行工具-OSS文件上传/"></a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2019/09/08/Spring-Boot-中使用Spring-Cloud-Stream/">Spring Boot 中使用Spring Cloud Stream</a>
-      </h2>
-      <p class="article-date">September 8, 2019</p>
+      <p class="article-date">September 20, 2020</p>
       
         
   <a href="/tags#SpringBoot" >
     <span class="tag-code">SpringBoot</span>
   </a>
 
-  <a href="/tags#Java" >
-    <span class="tag-code">Java</span>
-  </a>
-
-  <a href="/tags#Stream" >
-    <span class="tag-code">Stream</span>
-  </a>
-
       
       <div class="article-summary">
         
-          Spring Boot 中使用Spring Cloud Stream
-Spring Cloud Stream 用于构建高可扩展的使用消息系统连接的事件驱动服务的框架
+          Spring Boot 2.3+ Liveness 和 Readness 接口使用在 Spring Boot  2.3+ 中，提供了单独的 liveness 和 readness，用于为 Kubernetes 提供相应检查接口
 
-
-Binder: 负责提供与外部消息系统集成的组件
-Binding: 提供外部消息系统与应用之间桥接的生产者和消费者
-Mes ...
+liveness用于检查应用是否存活，当应用组件因故障不健康时 ...
         
       </div>
-      <a class="more" href="/2019/09/08/Spring-Boot-中使用Spring-Cloud-Stream/"></a>
+      <a class="more" href="/2020/09/20/Spring-Boot-2-3-Liveness-和-Readness-接口使用/"></a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2019/09/08/Spring-Boot-中使用-WebSocket/">Spring Boot 中使用 WebSocket</a>
+        <a href="/2020/09/20/SpringBoot-框架自带插件构建-Docker-镜像/">SpringBoot 框架自带插件构建 Docker 镜像</a>
       </h2>
-      <p class="article-date">September 8, 2019</p>
+      <p class="article-date">September 20, 2020</p>
       
         
   <a href="/tags#SpringBoot" >
     <span class="tag-code">SpringBoot</span>
   </a>
 
-  <a href="/tags#Java" >
-    <span class="tag-code">Java</span>
-  </a>
-
-  <a href="/tags#WebSocket" >
-    <span class="tag-code">WebSocket</span>
+  <a href="/tags#Docker" >
+    <span class="tag-code">Docker</span>
   </a>
 
       
       <div class="article-summary">
         
-          Spring Boot  中使用 WebSocket
-WebSocket 是一种长连接技术，可以实现服务端和客户端的双向通信，服务端可以主动推送信息给客户端
-
-构建应用添加依赖
-build.gradle
-
-12345678910dependencies &#123;    compile(" ...
+          SpringBoot 框架自带插件构建 Docker 镜像Spring Boot 2.3.0 之后支持通过 buildpacks 插件构建 Docker 镜像，原理和执行过程与 Jib 类似，支持 Spring Boot 项目的分层构建，当代码改动后，只需更新代码部分，可以减少构建后 pus ...
         
       </div>
-      <a class="more" href="/2019/09/08/Spring-Boot-中使用-WebSocket/"></a>
+      <a class="more" href="/2020/09/20/SpringBoot-框架自带插件构建-Docker-镜像/"></a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2020/09/20/Raspberry-Pi-4-使用-Grafana-监控/">Raspberry Pi 4 使用 Grafana 监控</a>
+      </h2>
+      <p class="article-date">September 20, 2020</p>
+      
+        
+  <a href="/tags#Grafana" >
+    <span class="tag-code">Grafana</span>
+  </a>
+
+  <a href="/tags#RaspberryPi" >
+    <span class="tag-code">RaspberryPi</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          Raspberry Pi 4 使用 Grafana 监控运行 InfluxdbInfluxdb 和 Prometheus 一样都是时序数据库，不同的是它能够作为一个转发代理接受来自不同程序的消息，这里使用 Telegraf 采集数据，存放到 Influxdb 中
+
+启动
+
+挂载的目的是为了将 ...
+        
+      </div>
+      <a class="more" href="/2020/09/20/Raspberry-Pi-4-使用-Grafana-监控/"></a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2020/09/20/Raspberry-Pi-4-使用-USB-从-SSD-启动/">Raspberry Pi 4 使用 USB 从 SSD 启动</a>
+      </h2>
+      <p class="article-date">September 20, 2020</p>
+      
+        
+  <a href="/tags#RaspberryPi" >
+    <span class="tag-code">RaspberryPi</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          Raspberry Pi 4 使用 USB 从 SSD 启动树莓派 4 的最新固件已经支持从USB 启动，通过外接 U盘或者硬盘，能够摆脱 SD 卡的IO 速度限制，这里通过 USB 从 SSD 硬盘启动系统
+安装 Raspberry Pi OS
+下载 Imager 
+
+从 https:// ...
+        
+      </div>
+      <a class="more" href="/2020/09/20/Raspberry-Pi-4-使用-USB-从-SSD-启动/"></a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2020/09/20/Spring-Cloud-使用-Consul-作为配置中心/">Spring Cloud 使用 Consul 作为配置中心</a>
+      </h2>
+      <p class="article-date">September 20, 2020</p>
+      
+        
+  <a href="/tags#Java" >
+    <span class="tag-code">Java</span>
+  </a>
+
+  <a href="/tags#SpringCloud" >
+    <span class="tag-code">SpringCloud</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          Spring Cloud 使用 Consul 作为配置中心加载配置加载配置是通过 ConsulPropertySourceLocator 来实现的，该类是 PropertySourceLocator接口的实现类
+Bean 初始化1234@Beanpublic ConsulPropertySo ...
+        
+      </div>
+      <a class="more" href="/2020/09/20/Spring-Cloud-使用-Consul-作为配置中心/"></a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2020/09/20/Spring-Cloud-使用-Kubernetes-作为配置中心-1/">Spring Cloud 使用 Kubernetes 作为配置中心</a>
+      </h2>
+      <p class="article-date">September 20, 2020</p>
+      
+        
+  <a href="/tags#Java" >
+    <span class="tag-code">Java</span>
+  </a>
+
+  <a href="/tags#SpringCloud" >
+    <span class="tag-code">SpringCloud</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          Spring Cloud 使用 Kubernetes 作为配置中心Spring Cloud 支持使用 Kubernetes 作为配置中心，通过 ConfigMap 或 Secret，将配置添加到应用中
+加载配置加载配置是通过 PropertySourceLocator 来实现的，Config ...
+        
+      </div>
+      <a class="more" href="/2020/09/20/Spring-Cloud-使用-Kubernetes-作为配置中心-1/"></a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2020/09/20/Spring-Cloud-Consul-服务注册和发现/">Spring Cloud Consul 服务注册和发现</a>
+      </h2>
+      <p class="article-date">September 20, 2020</p>
+      
+        
+  <a href="/tags#Java" >
+    <span class="tag-code">Java</span>
+  </a>
+
+  <a href="/tags#SpringCloud" >
+    <span class="tag-code">SpringCloud</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          Spring Cloud Consul 服务注册和发现Spring Cloud Kubernetes 使用，可以通过引入 org.springframework.cloud:spring-cloud-starter-consul-discovery，这个 starter 依赖于 org.sp ...
+        
+      </div>
+      <a class="more" href="/2020/09/20/Spring-Cloud-Consul-服务注册和发现/"></a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2020/09/20/Spring-Cloud-Kubernetes-服务注册和发现/">Spring Cloud Kubernetes 服务注册和发现</a>
+      </h2>
+      <p class="article-date">September 20, 2020</p>
+      
+        
+  <a href="/tags#Java" >
+    <span class="tag-code">Java</span>
+  </a>
+
+  <a href="/tags#SpringCloud" >
+    <span class="tag-code">SpringCloud</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          Spring Cloud Kubernetes 服务注册和发现Spring Cloud Kubernetes 使用，可以通过引入 org.springframework.cloud:spring-cloud-starter-kubernetes，这个 starter 依赖于 org.spri ...
+        
+      </div>
+      <a class="more" href="/2020/09/20/Spring-Cloud-Kubernetes-服务注册和发现/"></a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2020/09/20/Spring-Cloud-Gateway-使用-Kubernetes-作为服务发现/">Spring Cloud Gateway 使用 Kubernetes 作为服务发现</a>
+      </h2>
+      <p class="article-date">September 20, 2020</p>
+      
+        
+  <a href="/tags#Java" >
+    <span class="tag-code">Java</span>
+  </a>
+
+  <a href="/tags#SpringCloud" >
+    <span class="tag-code">SpringCloud</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          Spring Cloud Gateway 使用 Kubernetes 作为服务发现Spring Cloud Gateway 作为网关，通过用于执行一些通用逻辑后做请求转发，后端可能涉及到多个服务，每个服务又有多个实例，调用服务实例就需要动态的更新，可以通过注册中心来实现，如果部署在K8S集群 ...
+        
+      </div>
+      <a class="more" href="/2020/09/20/Spring-Cloud-Gateway-使用-Kubernetes-作为服务发现/"></a>
     </article>
   
 

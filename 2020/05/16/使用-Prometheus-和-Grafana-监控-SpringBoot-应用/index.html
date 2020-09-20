@@ -149,7 +149,7 @@
 <p><img src="https://hellowoodes.oss-cn-beijing.aliyuncs.com/picture/springboot-grafana-dashboard-variable.png" alt="springboot-grafana-dashboard-variable.png"></p>
 <p>这样，就可以实现 application 和 instance的联动，选择application后，instance中显示相应的应用的实例</p>
 <p><img src="https://hellowoodes.oss-cn-beijing.aliyuncs.com/picture/springboot-grafana-dashboard.png" alt="springboot-grafana-dashboard.png"></p>
-<h2 id="监控方法执行时间和数量"><a href="#监控方法执行时间和数量" class="headerlink" title="监控方法执行时间和数量"></a>监控方法执行时间和数量</h2><p>Prometheus 提供了时间和数量的监控指标，通过在定时任务上添加 <code>@Counted</code>和<code>@Timed</code>来监控数据；相关文档可以参考 <a href="http://micrometer.io/docs/concepts#_the_timed_annotation" target="_blank" rel="noopener">The @Timed annotation</a></p>
+<h2 id="监控方法执行时间和数量"><a href="#监控方法执行时间和数量" class="headerlink" title="监控方法执行时间和数量"></a>监控方法执行时间和数量</h2><p>Prometheus 提供了时间和数量的监控指标，通过在方法上添加 <code>@Counted</code>和<code>@Timed</code>来监控数据；相关文档可以参考 <a href="http://micrometer.io/docs/concepts#_the_timed_annotation" target="_blank" rel="noopener">The @Timed annotation</a></p>
 <ul>
 <li>注入切面的Bean</li>
 </ul>

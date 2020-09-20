@@ -126,7 +126,7 @@
 <h2 id="启动-Consul"><a href="#启动-Consul" class="headerlink" title="启动 Consul"></a>启动 Consul</h2><ul>
 <li>创建配置文件 </li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/docker/consul/config/config</span><br><span class="line">vi ~/docker/consul/config/config.json</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/docker/consul/config</span><br><span class="line">vi ~/docker/consul/config/config.json</span><br></pre></td></tr></table></figure>
 <p>添加以下内容，目的是为了启用 Consul 的 Prometheus，否则会在调用相关端口时提示 <code>415 Unsupport Media Type</code> 和 <code>Prometheus is not enabled since its retention time is not positive</code></p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"telemetry"</span>: &#123;</span><br><span class="line">        <span class="attr">"prometheus_retention_time"</span>: <span class="string">"480h"</span>,</span><br><span class="line">        <span class="attr">"disable_hostname"</span>: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>

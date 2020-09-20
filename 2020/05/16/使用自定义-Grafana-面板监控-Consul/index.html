@@ -166,7 +166,7 @@
 </ul>
 <p>添加一个 Dashboard，并添加一个 Panel，在 Panel 的 Metrics 中添加刚才的查询语句</p>
 <p><img src="https://hellowoodes.oss-cn-beijing.aliyuncs.com/picture/grafana-custom-dashboard-cosnul-reponse-time-grafana.png" alt="grafana-custom-dashboard-cosnul-reponse-time-grafana.png"></p>
-<p>执行查询后，会看到有图表生成，变量的名称通过 Legend 字段指定，如这里是 <code>{instance=&quot;host.docker.internal:9107&quot;, job=&quot;consul-exporter&quot;, node=&quot;leader&quot;, server_ip=&quot;172.19.0.2:8300&quot;}</code>，需要显示IP，即 <code>server_ip</code> 的值，可以设置 Legend 为 <code></code>，这样会显示正确的名称</p>
+<p>执行查询后，会看到有图表生成，变量的名称通过 Legend 字段指定，如这里是 <code>{instance=&quot;host.docker.internal:9107&quot;, job=&quot;consul-exporter&quot;, node=&quot;leader&quot;, server_ip=&quot;172.19.0.2:8300&quot;}</code>，需要显示IP，即 <code>server_ip</code> 的值，可以设置 Legend，这样会显示正确的名称</p>
 <p>其他的显示单位，显示效果等以及面板的名称可以通过旁边的设置选项进行配置</p>
 <h2 id="监控服务信息"><a href="#监控服务信息" class="headerlink" title="监控服务信息"></a>监控服务信息</h2><p>可以根据 Consul 和 consul_exporter 对服务状态进行监控，只需要根据不同的数据进行聚合配置就可以实现</p>
 <ul>

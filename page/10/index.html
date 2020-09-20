@@ -115,254 +115,146 @@
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2018/01/01/Gauge中执行测试的常用命令/">Gauge中执行测试的常用命令</a>
+        <a href="/2018/01/01/Ubuntu搭建Redis服务器/">Ubuntu搭建Redis服务器</a>
       </h2>
       <p class="article-date">January 1, 2018</p>
       
         
-  <a href="/tags#Java" >
-    <span class="tag-code">Java</span>
+  <a href="/tags#Ubuntu" >
+    <span class="tag-code">Ubuntu</span>
   </a>
 
-  <a href="/tags#Gauge" >
-    <span class="tag-code">Gauge</span>
-  </a>
-
-  <a href="/tags#Test" >
-    <span class="tag-code">Test</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          本文所有内容均参考自Gauge官方文档s
-
-#初始化Java项目
-
-会在指定的文件夹下创建一个新的Gauge项目，如果没有安装Java和Html-report插件会自动安装
-
-1gauge --init java
-
-执行项目通过文件执行
-执行specs文件夹下所有.spec文件
-
-1gaug ...
-        
-      </div>
-      <a class="more" href="/2018/01/01/Gauge中执行测试的常用命令/"></a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2018/01/01/Gauge-中Step使用别名/">Gauge 中Step使用别名</a>
-      </h2>
-      <p class="article-date">January 1, 2018</p>
-      
-        
-  <a href="/tags#Java" >
-    <span class="tag-code">Java</span>
-  </a>
-
-  <a href="/tags#Gauge" >
-    <span class="tag-code">Gauge</span>
-  </a>
-
-  <a href="/tags#Test" >
-    <span class="tag-code">Test</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          所有内容均来自Gauge官网文档
-
-##在执行的过程中，可能需要使用不同的名称来执行同样的操作，所以使用别名来区分
-
-
-在这个Scenario中，第一步和第三步是相同的操作，但是表示的方式不同
-
-12345678User Creation=============Multiple Users ...
-        
-      </div>
-      <a class="more" href="/2018/01/01/Gauge-中Step使用别名/"></a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2018/01/01/Gauge基础知识/">Gauge基础知识</a>
-      </h2>
-      <p class="article-date">January 1, 2018</p>
-      
-        
-  <a href="/tags#Java" >
-    <span class="tag-code">Java</span>
-  </a>
-
-  <a href="/tags#Gauge" >
-    <span class="tag-code">Gauge</span>
-  </a>
-
-  <a href="/tags#Test" >
-    <span class="tag-code">Test</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          本文所有内容均参照自Gauge官方文档
-
-
-#基本思想Gauge入门比较简单，Gauge的基本思想就是通过.spec 或者.md 文件，使用MarkDown语法去规定执行的动作，然后由Java或者其他语言的文件去按照所写的.spec 或者.md 文件的顺序去执行Java文件，从而达到测试的目 ...
-        
-      </div>
-      <a class="more" href="/2018/01/01/Gauge基础知识/"></a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2018/01/01/在IDEA中配置Gauge环境/">在IDEA中配置Gauge环境</a>
-      </h2>
-      <p class="article-date">January 1, 2018</p>
-      
-        
-  <a href="/tags#Java" >
-    <span class="tag-code">Java</span>
-  </a>
-
-  <a href="/tags#Gauge" >
-    <span class="tag-code">Gauge</span>
-  </a>
-
-  <a href="/tags#Test" >
-    <span class="tag-code">Test</span>
+  <a href="/tags#Reids" >
+    <span class="tag-code">Reids</span>
   </a>
 
       
       <div class="article-summary">
         
           
-Gauge是一个自动化测试工具，主要是通过.spec 文件指定执行的步骤，然后由Java代码去测试
+在Ubuntu中搭建Redis服务器
 
-首先，下载安装Gauge
-安装后通过cmd运行guage -v 来确认Gauge安装成功
-安装成功后安装Gauge的插件
-
-gauge --install-all
-或者可以用 gauge  ...
+安装###1 安装 
+1sudo apt-get install redis-server
+###2 启动
+1redis-server
+12345678910111213141516171819202122232425265617:C 18 Sep  ...
         
       </div>
-      <a class="more" href="/2018/01/01/在IDEA中配置Gauge环境/"></a>
+      <a class="more" href="/2018/01/01/Ubuntu搭建Redis服务器/"></a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2018/01/01/Gauge中Gradle自定义Task失败的解决方法/">Gauge中Gradle自定义Task失败的解决方法</a>
+        <a href="/2018/01/01/Redis基础知识-数据类型/">Redis基础知识-数据类型</a>
       </h2>
       <p class="article-date">January 1, 2018</p>
       
         
-  <a href="/tags#Java" >
-    <span class="tag-code">Java</span>
-  </a>
-
-  <a href="/tags#Gauge" >
-    <span class="tag-code">Gauge</span>
-  </a>
-
-  <a href="/tags#Test" >
-    <span class="tag-code">Test</span>
-  </a>
-
-  <a href="/tags#Gradle" >
-    <span class="tag-code">Gradle</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          ##Gauge中加入了Gradle之后根据官方文档自定义task并不能执行
-1234567891011task gaugeTest(type: GaugeTask) &#123;    doFirst &#123;        gauge &#123;            specsDi ...
-        
-      </div>
-      <a class="more" href="/2018/01/01/Gauge中Gradle自定义Task失败的解决方法/"></a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2018/01/01/IDEA-Maven项目导入失败，无法识别pom文件/">IDEA Maven项目导入失败，无法识别pom文件</a>
-      </h2>
-      <p class="article-date">January 1, 2018</p>
-      
-        
-  <a href="/tags#Java" >
-    <span class="tag-code">Java</span>
-  </a>
-
-  <a href="/tags#Maven" >
-    <span class="tag-code">Maven</span>
-  </a>
-
-  <a href="/tags#IDEA" >
-    <span class="tag-code">IDEA</span>
-  </a>
-
-  <a href="/tags#Experience" >
-    <span class="tag-code">Experience</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          解决思路
-按照以下顺序逐个检查，更改host文件比价极端，应该很少见1. 重启IDEA2. 重启电脑3. 重新导入项目4. 重装Maven5. 重装IDEA6. 检查host文件中有没有其他地址指向localhost
-
-
-一个Maven项目，之前是可以正常使用的，没有任何问题，但是今天去De ...
-        
-      </div>
-      <a class="more" href="/2018/01/01/IDEA-Maven项目导入失败，无法识别pom文件/"></a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2018/01/01/Spring-Boot-Actuator-添加-Git-和-Build-信息/">Spring Boot Actuator 添加 Git 和 Build 信息</a>
-      </h2>
-      <p class="article-date">January 1, 2018</p>
-      
-        
-  <a href="/tags#SpringBoot" >
-    <span class="tag-code">SpringBoot</span>
-  </a>
-
-  <a href="/tags#Java" >
-    <span class="tag-code">Java</span>
-  </a>
-
-  <a href="/tags#Actuator" >
-    <span class="tag-code">Actuator</span>
+  <a href="/tags#Redis" >
+    <span class="tag-code">Redis</span>
   </a>
 
       
       <div class="article-summary">
         
           
-在使用 Spring Boot Actuator 时可以通过生成 Git 和编译文件来提供信息
+Redis支持5种数据类型：字符串（string），哈希（hash），列表（list），集合（set），有序集合（sorted set）
 
-添加 Git 信息
-添加插件
-在 build.gradle 文件中添加一下配置
-
-
-
-123456789101112buildscript &#123;     repositories &# ...
+字符串（string）
+string 是 Redis最基本的类型，一个key对应一个value，string可以包含任何数据，比如jpg图片或者序列化 ...
         
       </div>
-      <a class="more" href="/2018/01/01/Spring-Boot-Actuator-添加-Git-和-Build-信息/"></a>
+      <a class="more" href="/2018/01/01/Redis基础知识-数据类型/"></a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2018/01/01/Tomcat启动时一直停留在一个应用的发布的解决办法/">Tomcat启动时一直停留在一个应用的发布的解决办法</a>
+        <a href="/2018/01/01/AngularJS配置Router-路由-提示Controller-NaNunction-undefined错误/">AngularJS配置Router(路由)提示Controller NaNunction/undefined错误</a>
+      </h2>
+      <p class="article-date">January 1, 2018</p>
+      
+        
+  <a href="/tags#AngularJs" >
+    <span class="tag-code">AngularJs</span>
+  </a>
+
+  <a href="/tags#Router" >
+    <span class="tag-code">Router</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+在配置Angular 路由的时候，和以往一样使用如下配置：
+
+
+router.js
+
+123456789101112131415161718192021222324var adminApp = angular.module(&apos;adminApp&apos;, [&apos;oc.l ...
+        
+      </div>
+      <a class="more" href="/2018/01/01/AngularJS配置Router-路由-提示Controller-NaNunction-undefined错误/"></a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2018/01/01/AngularJS配置路由/">AngularJS 配置路由</a>
+      </h2>
+      <p class="article-date">January 1, 2018</p>
+      
+        
+  <a href="/tags#AngularJs" >
+    <span class="tag-code">AngularJs</span>
+  </a>
+
+  <a href="/tags#Router" >
+    <span class="tag-code">Router</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+在使用AngularJS的时候需要用到路由来控制页面的跳转，从而达到使用一个面板进行控制的目的，面板页面如图所示
+
+
+
+该面板分为菜单栏和控制页面两部分，左侧和上方为不变的部分，中间区域随菜单选择变动
+
+
+##项目下载 | GitHub下载 | 演示地址 | GitHub演示地址 
+
+1. ...
+        
+      </div>
+      <a class="more" href="/2018/01/01/AngularJS配置路由/"></a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2018/01/01/Nginx-配置/">Nginx 配置</a>
+      </h2>
+      <p class="article-date">January 1, 2018</p>
+      
+        
+  <a href="/tags#Nginx" >
+    <span class="tag-code">Nginx</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          1. 基础配置123456789101112131415161718192021222324252627282930313233worker_processes  1;events &#123;    worker_connections  1024;&#125;http &#123;    ...
+        
+      </div>
+      <a class="more" href="/2018/01/01/Nginx-配置/"></a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2018/01/01/Tomcat9-配置HTTPS连接/">Tomcat9 配置HTTPS连接</a>
       </h2>
       <p class="article-date">January 1, 2018</p>
       
@@ -371,49 +263,135 @@ gauge --install-all
     <span class="tag-code">Tomcat</span>
   </a>
 
+  <a href="/tags#Https" >
+    <span class="tag-code">Https</span>
+  </a>
+
       
       <div class="article-summary">
         
           
-Tomcat在启动时一直停留在某一个应用无法启动或者需要很长时间才能启动，提示Deploying web application directory [/home/dev/tomcat/apache-tomcat-9.0.0.M26/webapps/ROOT，可以通过如下配置来加速启动
+Tomcat中配置HTTPS连接可以分为两步：
+1. 生成证书
+  2. 配置Tomcat
+准备工作
 
- ...
+JDK
+Tomcat
+
+
+
+1. 生成证书
+证书可以使用Java来生成
+
+
+直接使用命令生成证书
+
+1keytool -genkeypair -alias &quot;tomcat&qu ...
         
       </div>
-      <a class="more" href="/2018/01/01/Tomcat启动时一直停留在一个应用的发布的解决办法/"></a>
+      <a class="more" href="/2018/01/01/Tomcat9-配置HTTPS连接/"></a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2018/01/01/SpringMVC-生成验证码/">SpringMVC 生成验证码</a>
+        <a href="/2018/01/01/Windows下配置Chrome-WebDriver/">Windows下配置Chrome WebDriver</a>
       </h2>
       <p class="article-date">January 1, 2018</p>
       
         
-  <a href="/tags#Java" >
-    <span class="tag-code">Java</span>
+  <a href="/tags#WebDriver" >
+    <span class="tag-code">WebDriver</span>
   </a>
 
-  <a href="/tags#SrpingMVC" >
-    <span class="tag-code">SrpingMVC</span>
+  <a href="/tags#Selenium" >
+    <span class="tag-code">Selenium</span>
   </a>
 
       
       <div class="article-summary">
         
           
-使用 Google kaptcha 为 SpringMVC Maven 项目生成验证码
+WebDriver多用来执行自动化测试，可以通过Java文件或者其他方式在测试的时候打开，Firefox的自带了WebDriver，但是Chrome没有，需要手动安装
 
-##1 添加依赖
-12345&lt;dependency&gt;    &lt;groupId&gt;com.github.penggle&lt;/groupId&gt;    &lt;artifac ...
+
+
+首先下载Chrome的WebDriver
+将WebDriver复制到Chrome的安装目录
+安装目录可以通过在Chr ...
         
       </div>
-      <a class="more" href="/2018/01/01/SpringMVC-生成验证码/"></a>
+      <a class="more" href="/2018/01/01/Windows下配置Chrome-WebDriver/"></a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2018/01/01/IDEA启动Spring-Boot项目提示Unable-to-start-EmbeddedWebApplicationContext-due-to-missing-EmbeddedServlet/">IDEA启动Spring Boot项目提示Unable to start EmbeddedWebApplicationContext due to missing EmbeddedServlet...</a>
+        <a href="/2018/01/01/AngularJS中使用ngModal模态框/">AngularJS中使用ngModal模态框</a>
+      </h2>
+      <p class="article-date">January 1, 2018</p>
+      
+        
+  <a href="/tags#AngularJs" >
+    <span class="tag-code">AngularJs</span>
+  </a>
+
+  <a href="/tags#ngModal" >
+    <span class="tag-code">ngModal</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+在AngularJS中使用模态框需要引用的文件：
+angular.js 1.5.5
+ui.bootstrap-tpls.js 0.11.2
+bootstrap.css 3.3.7
+
+
+
+
+需要注意版本要一致，高版本的不支持这种方法，会出错
+
+
+
+将需要弹出的模态框的内容写在 script  ...
+        
+      </div>
+      <a class="more" href="/2018/01/01/AngularJS中使用ngModal模态框/"></a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2018/01/01/AngularJS中ngTable自定义-重写过滤器/">AngularJS 中ngTable自定义/重写过滤器</a>
+      </h2>
+      <p class="article-date">January 1, 2018</p>
+      
+        
+  <a href="/tags#AngularJs" >
+    <span class="tag-code">AngularJs</span>
+  </a>
+
+  <a href="/tags#ngTable" >
+    <span class="tag-code">ngTable</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+
+在使用ngTable 时用到了需要进行按时间过滤，但是ngTable并没有该功能，所以需要自定义过滤器，但是如果自定义了过滤器，则会覆盖原来的，所以就需要重写过滤器
+
+###ngTable过滤器的原理是按照过滤的条件遍历所有的列表项内容，如果满足过滤条件则返回true，显示该记录，如果不 ...
+        
+      </div>
+      <a class="more" href="/2018/01/01/AngularJS中ngTable自定义-重写过滤器/"></a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2018/01/01/Spring-Controller-数据传递中注解的使用/">Spring Controller 数据传递中注解的使用</a>
       </h2>
       <p class="article-date">January 1, 2018</p>
       
@@ -426,24 +404,17 @@ Tomcat在启动时一直停留在某一个应用无法启动或者需要很长�
     <span class="tag-code">Java</span>
   </a>
 
-  <a href="/tags#IDEA" >
-    <span class="tag-code">IDEA</span>
-  </a>
-
-  <a href="/tags#Exception" >
-    <span class="tag-code">Exception</span>
-  </a>
-
       
       <div class="article-summary">
         
-          
-导入一个gradle 的Spring Boot项目，在启动的时候先提示找不到HttpServletRequest这个包，错误如下：
+          ##根据处理Request的不同内容分为4类：
 
-123456Caused by: java.lang.ClassNotFoundException: javax.servlet.http.HttpServ ...
+处理Request URI部分的注解：@PathVariable
+处理Request Header部分的注解：@RequestHeader，@CookieValue
+处理Request Body部分的注解：@RequestParam，@Req ...
         
       </div>
-      <a class="more" href="/2018/01/01/IDEA启动Spring-Boot项目提示Unable-to-start-EmbeddedWebApplicationContext-due-to-missing-EmbeddedServlet/"></a>
+      <a class="more" href="/2018/01/01/Spring-Controller-数据传递中注解的使用/"></a>
     </article>
   
 

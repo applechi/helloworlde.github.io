@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="HelloWood&#39;s Technology Notes">
+  <meta name="keyword" content="HelloWood,technology,note">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      SpringBoot 框架自带插件构建 Docker 镜像 | HelloWood
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>HelloWood</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>SpringBoot 框架自带插件构建 Docker 镜像</h2>
+  <p class="post-date">2020-09-20
+  </p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="SpringBoot-框架自带插件构建-Docker-镜像"><a href="#SpringBoot-框架自带插件构建-Docker-镜像" class="headerlink" title="SpringBoot 框架自带插件构建 Docker 镜像"></a>SpringBoot 框架自带插件构建 Docker 镜像</h1><p>Spring Boot 2.3.0 之后支持通过 buildpacks 插件构建 Docker 镜像，原理和执行过程与 Jib 类似，支持 Spring Boot 项目的分层构建，当代码改动后，只需更新代码部分，可以减少构建后 push 和 pull 镜像的时间，减少镜像存储的成本</p>
+<p>底层是通过 <a href="https://buildpacks.io/" target="_blank" rel="noopener">Buildpacks</a> 构建，Buildpacks是 Dockerfile 的一个替代方案。Buildpacks 能够自动探测运行 Docker 容器中的应用时所需要的软件，例如，它会探测应用中所使用的 Java 版本，基于该版本，buildpack 会选择所指定的 JRE 并构建 Docker 镜像</p>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ul>
+<li>Spring Boot 编译插件集成，不需要额外的配置</li>
+<li>JVM 参数计算，支持通过线程数量，类数量等，动态的计算适合的 JVM 参数</li>
+<li>会在构建过程中加入 OOM Killer，当 OOM 时自动杀死应用</li>
+</ul>
+<h2 id="弊端"><a href="#弊端" class="headerlink" title="弊端"></a>弊端</h2><ul>
+<li>在镜像中指定了内存参数，CPU数量等</li>
+<li>不能灵活添加自定义文件，只能添加应用中的文件为单独的层</li>
+<li>构建镜像、运行镜像与 Buildpacks 强绑定，需要 Buildpacks 的参数才可以成功构建，如果要自定义信息，同样需要在基础镜像中加入 Buildpacks 的配置</li>
+<li>不支持直接使用历史版本镜像的分层，当tag改变时会完全重新构建</li>
+<li>builder 和 runImage 中的内容是动态下载的，访问 GitHub 可能失败，也不安全</li>
+</ul>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ol>
+<li>更新 SpringBoot 版本为 2.3.2.RELEASE </li>
+<li>启用分层</li>
+</ol>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bootJar &#123;</span><br><span class="line">    layered()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>执行构建</li>
+</ol>
+<p>会根据应用名称构建出一个镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gradle buildImage</span><br></pre></td></tr></table></figure>
+<ol>
+<li>指定基础镜像、默认镜像以及镜像名称</li>
+</ol>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">bootBuildImage &#123;</span><br><span class="line">    builder = <span class="string">"docker.io/hellowoodes/buildpacks-builer:base-platform-api-0.3"</span></span><br><span class="line">    runImage = <span class="string">"docker.io/hellowoodes/buildpacks-run:base-cnb"</span></span><br><span class="line">    imageName = <span class="string">"docker.io/hellowoodes/$&#123;artifactId&#125;:$&#123;version&#125;"</span></span><br><span class="line">    environment = [</span><br><span class="line">            <span class="string">"TZ"</span>       : <span class="string">"Asia/Shanghai"</span>,</span><br><span class="line">            <span class="string">"JAVA_OPTS"</span>: <span class="string">"-Djava.security.egd=file:/dev/./urandom"</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="自定义分层"><a href="#自定义分层" class="headerlink" title="自定义分层"></a>自定义分层</h2><p>目前只支持两种 layer，分别是 application 和 dependencies</p>
+<ul>
+<li>application 只支持将项目目录下的文件打包到镜像中，格式为文件目录</li>
+<li>dependencies 支持依赖，格式为 <code>groupId:artifactId:version</code></li>
+</ul>
+<p>共有4层，可以通过<code>java -Djarmode=layertools -jar image-0.0.1-SNAPSHOT.jar list</code> 查看：</p>
+<ul>
+<li>dependencies 正式版的依赖</li>
+<li>spring-boot-loader SpringBoot 启动文件</li>
+<li>snapshot-dependencies 快照版的依赖</li>
+<li>application 应用文件，即编译后的类，resource下面的文件</li>
+</ul>
+<h3 id="添加新的-layer"><a href="#添加新的-layer" class="headerlink" title="添加新的 layer"></a>添加新的 layer</h3><p>如需要将静态文件单独分为一个层，可以在 application 加入新的层的逻辑</p>
+<p>需要注意的是，这个层的 layerOrder 得放到 application 层的前面，否则 application 层包含了所有的文件，这个层就找不到；因为文件的添加逻辑是先添加 include 中指定的，下一层如果没有指定则添加剩余的</p>
+<p>暂时不支持将自定义的外部文件加入层中，需要自定义 buildpacks 才可以</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">bootJar &#123;</span><br><span class="line">    layered &#123;</span><br><span class="line">        application &#123;</span><br><span class="line">            intoLayer(<span class="string">"spring-boot-loader"</span>) &#123;</span><br><span class="line">                include <span class="string">"org/springframework/boot/loader/**"</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 自定义 static 层，存放静态文件</span></span><br><span class="line">            intoLayer(<span class="string">"static"</span>) &#123;</span><br><span class="line">                include <span class="string">"static/**"</span></span><br><span class="line">            &#125;</span><br><span class="line">            intoLayer(<span class="string">"application"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        dependencies &#123;</span><br><span class="line">            intoLayer(<span class="string">"snapshot-dependencies"</span>) &#123;</span><br><span class="line">                include <span class="string">"*:*:*SNAPSHOT"</span></span><br><span class="line">            &#125;</span><br><span class="line">            intoLayer(<span class="string">"dependencies"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        layerOrder = [<span class="string">"dependencies"</span>, <span class="string">"spring-boot-loader"</span>, <span class="string">"snapshot-dependencies"</span>, <span class="string">"static"</span>, <span class="string">"application"</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
+<li>默认的用户是 cnb</li>
+<li>启动方式不同，是通过启动JarLauncher 来启动应用</li>
+<li>自定义 Builder 镜像和 Stack 可以参考 <a href="https://github.com/buildpacks/samples" target="_blank" rel="noopener">buildpacks/samples</a></li>
+<li>构建镜像和基础运行镜像默认从 gcr.io 下载</li>
+</ul>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
+<li><a href="https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/gradle-plugin/reference/html/#build-image" target="_blank" rel="noopener">Packaging OCI Images</a></li>
+<li><a href="https://github.com/cloudfoundry/java-buildpack-memory-calculator" target="_blank" rel="noopener">java-buildpack-memory-calculator</a></li>
+<li><a href="https://github.com/bell-sw/Liberica" target="_blank" rel="noopener">bell-sw/Liberica</a></li>
+<li><a href="https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/considerations.html" target="_blank" rel="noopener">HotSpot GC Tuning Guide</a></li>
+<li><a href="https://docs.google.com/document/d/1vlXBiwRIjwiVcbvUGYMrxx2Aw1RVAtxq3iuZ3UK2vXA/edit#heading=h.uy41ishpv9zc" target="_blank" rel="noopener">Java Buildpack Memory Calculator v3</a> </li>
+<li><a href="https://github.com/paketo-buildpacks/spring-boot" target="_blank" rel="noopener">paketo-buildpacks/spring-boot</a></li>
+<li><a href="https://spring.io/guides/topicals/spring-boot-docker" target="_blank" rel="noopener">Spring Boot Docker</a></li>
+<li><a href="https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.3-Release-Notes" target="_blank" rel="noopener">Spring-Boot-2.3-Release-Notes</a></li>
+<li><a href="https://github.com/buildpacks/samples" target="_blank" rel="noopener">buildpacks/samples</a></li>
+<li><a href="https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/html/#packaging-layers-configuration" target="_blank" rel="noopener">gradle-packaging-layers-configuration</a></li>
+<li><a href="https://docs.spring.io/spring-boot/docs/current/maven-plugin/reference/html/#repackage-layers-configuration" target="_blank" rel="noopener">maven-packaging-layers-configuration</a></li>
+</ul>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#SpringBoot" >
+    <span class="tag-code">SpringBoot</span>
+  </a>
+
+  <a href="/tags#Docker" >
+    <span class="tag-code">Docker</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#SpringBoot-框架自带插件构建-Docker-镜像"><span class="toc-nav-text">SpringBoot 框架自带插件构建 Docker 镜像</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#优点"><span class="toc-nav-text">优点</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#弊端"><span class="toc-nav-text">弊端</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#使用"><span class="toc-nav-text">使用</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#自定义分层"><span class="toc-nav-text">自定义分层</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#添加新的-layer"><span class="toc-nav-text">添加新的 layer</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#注意事项"><span class="toc-nav-text">注意事项</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#参考文档"><span class="toc-nav-text">参考文档</span></a></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+<script>
+  (function () {
+    var url = 'http://hellowood.github.io/2020/09/20/SpringBoot-框架自带插件构建-Docker-镜像/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "helloworlde";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "SpringBoot 框架自带插件构建 Docker 镜像",
+        owner: "helloworlde",
+        repo: "helloworlde.github.io",
+        oauth: {
+          client_id: "2ddfebc6b5d4be13061d",
+          client_secret: "46e9112f9d6c44127830ade61da6d259d981c932"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    There is path to everyone 
+  </p>
+</footer>
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>

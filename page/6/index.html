@@ -115,38 +115,39 @@
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2018/04/08/SpringBoot-使用-MyBatis-通用-Mapper/">SpringBoot-使用 MyBatis 通用 Mapper</a>
+        <a href="/2018/12/31/SpringBoot-使用-MySQL保存emoji-表情/">SpringBoot 使用 MySQL保存emoji 表情</a>
       </h2>
-      <p class="article-date">April 8, 2018</p>
+      <p class="article-date">December 31, 2018</p>
       
         
   <a href="/tags#SpringBoot" >
     <span class="tag-code">SpringBoot</span>
   </a>
 
-  <a href="/tags#Java" >
-    <span class="tag-code">Java</span>
-  </a>
-
-  <a href="/tags#MyBatis" >
-    <span class="tag-code">MyBatis</span>
+  <a href="/tags#MySQL" >
+    <span class="tag-code">MySQL</span>
   </a>
 
       
       <div class="article-summary">
         
-          SpringBoot 使用 MyBatis 通用 Mapper
-通用 Mapper 是一个开源的 MyBatis 插件，该插件可以使用通用的 MyBatis方法，减少简单的 CRUD，提高开发效率；推荐搭配分页插件 PageHelper 一起使用；通用 Mapper 插件虽然没有 MyBat ...
+          SpringBoot 使用 MySQL保存emoji 表情
+在使用 SpringBoot 开发的应用中，有表单提交的内容中含有 emoji 表情，导致保存失败；这是因为MySQL 默认的 utf8 长度为3位，emoji 表情有4位
+
+
+更改表的字符集为utf8mb4
+
+1ALTER TAB ...
         
       </div>
-      <a class="more" href="/2018/04/08/SpringBoot-使用-MyBatis-通用-Mapper/"></a>
+      <a class="more" href="/2018/12/31/SpringBoot-使用-MySQL保存emoji-表情/"></a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2018/04/08/SpringBoot-使用-Spring-Session-实现-Session-共享/">SpringBoot-使用 Spring Session 实现 Session 共享</a>
+        <a href="/2018/12/31/Spring-Boot-配置-HTTPS-访问/">Spring Boot 配置 HTTPS 访问</a>
       </h2>
-      <p class="article-date">April 8, 2018</p>
+      <p class="article-date">December 31, 2018</p>
       
         
   <a href="/tags#SpringBoot" >
@@ -157,32 +158,26 @@
     <span class="tag-code">Java</span>
   </a>
 
-  <a href="/tags#SpringSession" >
-    <span class="tag-code">SpringSession</span>
-  </a>
-
-  <a href="/tags#Session" >
-    <span class="tag-code">Session</span>
-  </a>
-
       
       <div class="article-summary">
         
-          SpringBoot 使用 Spring Session 实现 Session 共享通过 Redis 共享配置
-配置并启动 Redis
-添加依赖
+          Spring Boot 配置 HTTPS 访问
+相关代码
 
-123456dependencies &#123;    compile('org.springframework.session:spring ...
+生成证书
+创建新证书
+
+1234567891011121314151617keytool -genkeypair -alias hellowood -keyalg RSA -keysize 2048 -storetype PKCS1 ...
         
       </div>
-      <a class="more" href="/2018/04/08/SpringBoot-使用-Spring-Session-实现-Session-共享/"></a>
+      <a class="more" href="/2018/12/31/Spring-Boot-配置-HTTPS-访问/"></a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2018/02/12/SpringBoot-使用QuartzJob实现任务控制/">SpringBoot 使用QuartzJob实现任务控制</a>
+        <a href="/2018/12/24/SpringBoot-中-Spring-Security-403-自定义返回消息/">SpringBoot 中 Spring Security 403 自定义返回消息</a>
       </h2>
-      <p class="article-date">February 12, 2018</p>
+      <p class="article-date">December 24, 2018</p>
       
         
   <a href="/tags#SpringBoot" >
@@ -193,281 +188,213 @@
     <span class="tag-code">Java</span>
   </a>
 
-  <a href="/tags#Quartz" >
-    <span class="tag-code">Quartz</span>
-  </a>
-
-  <a href="/tags#Job" >
-    <span class="tag-code">Job</span>
+  <a href="/tags#SpringSecurity" >
+    <span class="tag-code">SpringSecurity</span>
   </a>
 
       
       <div class="article-summary">
         
-          SpringBoot 使用QuartzJob实现任务控制
-项目地址https://github.com/helloworlde/SpringBootCollection/tree/master/SpringBoot-ScheduledJob
-在 SpringBoot 中通过 @Schedul ...
+          SpringBoot 中 Spring Security 403 自定义返回消息
+自定义处理类 CustomAccessDeniedHandler 
+
+1234567891011121314151617181920212223242526272829303132333435363738394 ...
         
       </div>
-      <a class="more" href="/2018/02/12/SpringBoot-使用QuartzJob实现任务控制/"></a>
+      <a class="more" href="/2018/12/24/SpringBoot-中-Spring-Security-403-自定义返回消息/"></a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2018/02/03/SpringBoot-使用-MyBatis-PageHelper-分页插件/">SpringBoot 使用 MyBatis PageHelper 分页插件</a>
+        <a href="/2018/10/23/Kubernetes-配置-kubeconfig-访问多个集群/">Kubernetes 配置 kubeconfig 访问多个集群</a>
       </h2>
-      <p class="article-date">February 3, 2018</p>
+      <p class="article-date">October 23, 2018</p>
       
         
-  <a href="/tags#SpringBoot" >
-    <span class="tag-code">SpringBoot</span>
-  </a>
-
-  <a href="/tags#Java" >
-    <span class="tag-code">Java</span>
-  </a>
-
-  <a href="/tags#MyBatis" >
-    <span class="tag-code">MyBatis</span>
+  <a href="/tags#Kubernetes" >
+    <span class="tag-code">Kubernetes</span>
   </a>
 
       
       <div class="article-summary">
         
-          SpringBoot 使用 MyBatis 分页插件
- MyBatis PageHelper 是一个 MyBatis 分页插件，能够比较方便的实现 MyBatis 的分页
-
-添加依赖
-build.gradle 
-
-1compile('com.github.pagehelper:pagehel ...
+          Kubernetes 配置 kubeconfig 访问多个集群
+如果有多个不同的集群，需要切换访问，就需要配置多个 Kubernetes 账号和 Context；集群的 KubeConfig 文件一般为~/.kube/config，默认只能访问一个集群，如果需要访问多个集群就需要修改这个文件 ...
         
       </div>
-      <a class="more" href="/2018/02/03/SpringBoot-使用-MyBatis-PageHelper-分页插件/"></a>
+      <a class="more" href="/2018/10/23/Kubernetes-配置-kubeconfig-访问多个集群/"></a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2018/01/21/SpringBoot-使用-ELK-日志收集系统安装配置/">SpringBoot 使用 ELK 日志收集系统安装配置</a>
+        <a href="/2018/10/22/Kubernetes-中部署-SpringBoot-应用/">Kubernetes 中部署 SpringBoot 应用 </a>
       </h2>
-      <p class="article-date">January 21, 2018</p>
+      <p class="article-date">October 22, 2018</p>
       
         
   <a href="/tags#SpringBoot" >
     <span class="tag-code">SpringBoot</span>
   </a>
 
-  <a href="/tags#Java" >
-    <span class="tag-code">Java</span>
-  </a>
-
-  <a href="/tags#ELK" >
-    <span class="tag-code">ELK</span>
-  </a>
-
-  <a href="/tags#Log" >
-    <span class="tag-code">Log</span>
+  <a href="/tags#Kubernetes" >
+    <span class="tag-code">Kubernetes</span>
   </a>
 
       
       <div class="article-summary">
         
-          SpringBoot 使用 ELK 日志收集系统安装配置Elasticsearch
-下载 Elasticsearch
+          Kubernetes 中部署 SpringBoot 应用
+在 Kubernetes 中通过yaml 配置文件预先声明部署 SpringBoot 应用
+代码地址 https://github.com/helloworlde/k8s-service
 
-解压并运行 bin/elasticsearch
-
-访问 http://localhost:9200, 会看到以下内容
-
-
-123456789101112131415&#12 ...
+创建 SpringBoot 应用
+创建名为  ...
         
       </div>
-      <a class="more" href="/2018/01/21/SpringBoot-使用-ELK-日志收集系统安装配置/"></a>
+      <a class="more" href="/2018/10/22/Kubernetes-中部署-SpringBoot-应用/"></a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2018/01/19/SpringBoot-logback-输出日志到数据库、Logstash/">SpringBoot logback 输出日志到数据库、Logstash</a>
+        <a href="/2018/10/21/Ubuntu-搭建-ShadowSocks-服务/">Ubuntu 搭建 ShadowSocks 服务</a>
       </h2>
-      <p class="article-date">January 19, 2018</p>
+      <p class="article-date">October 21, 2018</p>
       
         
-  <a href="/tags#SpringBoot" >
-    <span class="tag-code">SpringBoot</span>
+  <a href="/tags#Ubuntu" >
+    <span class="tag-code">Ubuntu</span>
   </a>
 
-  <a href="/tags#Java" >
-    <span class="tag-code">Java</span>
+  <a href="/tags#Tool" >
+    <span class="tag-code">Tool</span>
   </a>
 
-  <a href="/tags#ElasticSearch" >
-    <span class="tag-code">ElasticSearch</span>
-  </a>
-
-  <a href="/tags#ELK" >
-    <span class="tag-code">ELK</span>
+  <a href="/tags#ShadowSocks" >
+    <span class="tag-code">ShadowSocks</span>
   </a>
 
       
       <div class="article-summary">
         
-          SpringBoot logback 输出日志到数据库、Logstash输入日志到数据库
-创建表
+          Ubuntu 搭建 ShadowSocks 服务
+在 Ubuntu 服务器上通过脚本安装 ShadowSocks 服务
+来自 https://teddysun.com/342.html
 
-123456789101112131415161718192021222324252627282930313233343536373839DROP TABLE IF EXISTS loggin ...
+安装
+下载安装脚本 
+
+1wget --no-check-certificate  https://ra ...
         
       </div>
-      <a class="more" href="/2018/01/19/SpringBoot-logback-输出日志到数据库、Logstash/"></a>
+      <a class="more" href="/2018/10/21/Ubuntu-搭建-ShadowSocks-服务/"></a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2018/01/19/SpringBoot-中日志使用/">SpringBoot 中日志使用</a>
+        <a href="/2018/10/13/Mac-客户端访问-Dropbox/">Mac 客户端访问 Dropbox</a>
       </h2>
-      <p class="article-date">January 19, 2018</p>
+      <p class="article-date">October 13, 2018</p>
       
         
-  <a href="/tags#SpringBoot" >
-    <span class="tag-code">SpringBoot</span>
+  <a href="/tags#Tool" >
+    <span class="tag-code">Tool</span>
   </a>
 
-  <a href="/tags#Java" >
-    <span class="tag-code">Java</span>
-  </a>
-
-  <a href="/tags#Log" >
-    <span class="tag-code">Log</span>
+  <a href="/tags#Dropbox" >
+    <span class="tag-code">Dropbox</span>
   </a>
 
       
       <div class="article-summary">
         
-          SpringBoot 中日志使用配置日志输出到文件12345# 输出到指定文件logging.file=./logs/application.log# 输出到指定目录下（会写入到 spring.log 中）logging.path=./logs
-当同时存在 logging.path 和 lo ...
+          Mac 客户端访问 Dropbox
+通过使用 ShadowSocks 的 PAC 代理模式可以访问到 Dropbox 的网页版，但是在 Mac 上下载客户端，打开后却提示无法连接
+
+
+参考文章 https://my.oschina.net/frankies/blog/367659 设置更改H ...
         
       </div>
-      <a class="more" href="/2018/01/19/SpringBoot-中日志使用/"></a>
+      <a class="more" href="/2018/10/13/Mac-客户端访问-Dropbox/"></a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2018/01/16/SpringBoot-使用-ElasticSearch/">SpringBoot 使用 ElasticSearch</a>
+        <a href="/2018/08/25/Java-中计算字符串表达式的值/">Java 中计算字符串表达式的值</a>
       </h2>
-      <p class="article-date">January 16, 2018</p>
+      <p class="article-date">August 25, 2018</p>
       
         
-  <a href="/tags#SpringBoot" >
-    <span class="tag-code">SpringBoot</span>
-  </a>
-
   <a href="/tags#Java" >
     <span class="tag-code">Java</span>
-  </a>
-
-  <a href="/tags#ElasticSearch" >
-    <span class="tag-code">ElasticSearch</span>
-  </a>
-
-  <a href="/tags#ELK" >
-    <span class="tag-code">ELK</span>
   </a>
 
       
       <div class="article-summary">
         
-          Spring Boot 使用 ElasticSearch
-项目地址：https://github.com/helloworlde/SpringBootCollection/tree/master/SpringBoot-ElasticSearch
-ElasticSearch 是一个开源的分布式 ...
+          Java 中计算字符串表达式的值
+在 Java 中计算字符串数值表达式可以用 javax.script.ScriptEngine#eval(java.lang.String)，通过调用 JavaScript 来计算
+
+123456789101112131415161718import jav ...
         
       </div>
-      <a class="more" href="/2018/01/16/SpringBoot-使用-ElasticSearch/"></a>
+      <a class="more" href="/2018/08/25/Java-中计算字符串表达式的值/"></a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2018/01/07/Swagger-常用注解说明/">Swagger 常用注解说明</a>
+        <a href="/2018/08/08/Docker-容器中运行-Docker-命令/">Docker 容器中运行 Docker 命令</a>
       </h2>
-      <p class="article-date">January 7, 2018</p>
+      <p class="article-date">August 8, 2018</p>
       
         
-  <a href="/tags#SpringBoot" >
-    <span class="tag-code">SpringBoot</span>
-  </a>
-
-  <a href="/tags#Java" >
-    <span class="tag-code">Java</span>
-  </a>
-
-  <a href="/tags#Swagger" >
-    <span class="tag-code">Swagger</span>
+  <a href="/tags#Docker" >
+    <span class="tag-code">Docker</span>
   </a>
 
       
       <div class="article-summary">
         
-          Swagger 常用注解说明
+          Docker 容器中运行 Docker 命令
+在使用 GitLab/Jenkins 等 CI 软件的时候需要使用 Docker 命令来构建镜像，需要在容器中使用 Docker 命令；通过将宿主机的 Docker 共享给容器即可
 
 
-注解
-属性
-值
-备注
+在启动容器时添加以下命令：
 
-
-
-
-@Api
-value
-字符串
-可用在class头上,class描述
-
-
-
-description
-字符串
-
-
-
-
-
-
-@Api(value = &quot;xxx&quot;, description = &quot;xxx&q ...
+123--privileged ...
         
       </div>
-      <a class="more" href="/2018/01/07/Swagger-常用注解说明/"></a>
+      <a class="more" href="/2018/08/08/Docker-容器中运行-Docker-命令/"></a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2018/01/07/SpringBoot-集成-Swagger-API-文档工具/">SpringBoot 集成 Swagger API 文档工具</a>
+        <a href="/2018/08/01/代码质量工具-Sonarqube-搭建使用/">代码质量工具 Sonarqube 搭建使用</a>
       </h2>
-      <p class="article-date">January 7, 2018</p>
+      <p class="article-date">August 1, 2018</p>
       
         
-  <a href="/tags#SpringBoot" >
-    <span class="tag-code">SpringBoot</span>
+  <a href="/tags#Tool" >
+    <span class="tag-code">Tool</span>
   </a>
 
-  <a href="/tags#Java" >
-    <span class="tag-code">Java</span>
-  </a>
-
-  <a href="/tags#Swagger" >
-    <span class="tag-code">Swagger</span>
+  <a href="/tags#Sonarqube" >
+    <span class="tag-code">Sonarqube</span>
   </a>
 
       
       <div class="article-summary">
         
-          Spring Boot 集成 Swagger API 文档工具
-项目地址：https://github.com/helloworlde/SpringBootCollection/blob/master/SpringBoot-Swagger
+          代码质量工具 Sonarqube 搭建使用
+Sonarqube 是一个代码质量管理平台，可以结合不同的测试工具，代码分析工具，持续集成工具等提供代码质量可是化和管理的工具
 
 
-Swaager 是一个开源用于设计、撰写、测试  ...
+在线工具
+截图
+
+使用启动容器123456docker run -d --name sonarqube \    - ...
         
       </div>
-      <a class="more" href="/2018/01/07/SpringBoot-集成-Swagger-API-文档工具/"></a>
+      <a class="more" href="/2018/08/01/代码质量工具-Sonarqube-搭建使用/"></a>
     </article>
   
 
