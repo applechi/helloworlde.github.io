@@ -79,3 +79,6 @@ theme: vexo
 deploy:
   type: git
   repo: https://github.com/helloworlde/helloworlde.github.io.git
+
+theme_config:
+  google_analytics: GTM-K7JDZV5
