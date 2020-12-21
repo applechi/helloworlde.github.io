@@ -81,4 +81,4 @@ deploy:
   repo: https://github.com/helloworlde/helloworlde.github.io.git
 
 theme_config:
-  google_analytics: GTM-K7JDZV5
+  google_analytics: UA-131463543-1
